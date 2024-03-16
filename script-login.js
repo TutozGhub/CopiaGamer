@@ -17,7 +17,7 @@ function Login() {
     error.textContent = "";
     localStorage.setItem("usernameMem", usr.value.toString());
     localStorage.setItem("loged", 1);
-    window.location.href = "main.html";
+    window.location.href = "index.html";
   } else {
     error.textContent = rta.ex;
   }
