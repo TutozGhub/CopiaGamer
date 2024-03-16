@@ -1,0 +1,60 @@
+body {
+  background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(52, 0, 95));
+  background-size: 150vw 300svh;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.226);
+  flex-direction: row;
+  padding: 20px;
+}
+section {
+  display: flex;
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+}
+.logo {
+  max-width: 30%;
+}
+#search {
+  width: 50%;
+}
+#login {
+  width: 10rem;
+  align-items: center;
+  margin: 0 5% 0 5%;
+}
+#signin {
+  width: 10rem;
+  align-items: center;
+  margin: 0 5% 0 0;
+}
+#buylist {
+  width: 2rem;
+  height: 2rem;
+  background-image: url(images/canasta.png);
+  background-color: transparent;
+  background-size: 2rem 2rem;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
+#circle {
+  margin-left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #9831b5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+label {
+  color: white;
+}
