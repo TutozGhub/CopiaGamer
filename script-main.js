@@ -26,12 +26,11 @@ btnLogout.addEventListener("click", () => LogOut());
 //#endregion
 
 //#region Funciones
-function Load() {
-  cargarCarro();
-  cargarUser();
-  configBtns();
-  generarTarjetas();
-}
+cargarCarro();
+cargarUser();
+configBtns();
+generarTarjetas();
+
 function SumarAlCarro(id, nombre, precio) {
   if (loged == 1){
     let i = parseInt(carro.textContent);
