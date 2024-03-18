@@ -12,11 +12,6 @@ btnLogin.addEventListener("click", Login);
 psw.addEventListener("keypress", EnterPress);
 
 //funciones
-function EnterPress(event) {
-  if (event.key === "Enter") {
-    btnLogin.click();
-  }
-}
 function Login() {
   let rta = validacion();
   if (rta.b) {
@@ -51,4 +46,9 @@ function validacion() {
 }
 function isNullOrEmpty(str) {
   return !str || str.trim().length === 0;
+}
+function EnterPress(event) {
+  if (event.key === "Enter") {
+    btnLogin.click();
+  }
 }

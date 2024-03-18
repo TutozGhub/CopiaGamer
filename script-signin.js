@@ -8,6 +8,7 @@ let error = document.getElementById("error");
 const usuarioMem = JSON.parse(localStorage.getItem("USUARIO"));
 //eventos
 btnSignin.addEventListener("click", () => Signin());
+psw.addEventListener("keypress", EnterPress);
 
 //funciones
 function Signin() {
@@ -34,4 +35,9 @@ function validacion() {
 }
 function isNullOrEmpty(str) {
   return !str || str.trim().length === 0;
+}
+function EnterPress(event) {
+  if (event.key === "Enter") {
+    btnSignin.click();
+  }
 }
