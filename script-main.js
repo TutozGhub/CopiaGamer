@@ -18,7 +18,6 @@ let loged = localStorage.getItem("loged");
 //#endregion
 
 //#region Eventos
-document.addEventListener("DOMContentLoaded", () => Load());
 btnCarro.addEventListener("click", () => LimpiarCarro());
 btnLogin.addEventListener("click", () => IrAlLogin());
 btnSignin.addEventListener("click", () => IrAlSignin());
@@ -75,11 +74,11 @@ function LogOut() {
 function configBtns() {
   if (loged) {
     if (loged == 1) {
-      btnLogin.style.display = "none";
-      btnSignin.style.display = "none";
+      btnLogout.style.display = "grid";
     } else if (loged == 0) {
       {
-        btnLogout.style.display = "none";
+        btnLogin.style.display = "grid";
+        btnSignin.style.display = "grid";
       }
     } else {
       localStorage.setItem("loged", 0);
