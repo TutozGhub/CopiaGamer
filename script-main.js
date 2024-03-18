@@ -1,7 +1,6 @@
 //#region Controles
 //#region Botones
 let btnCarro = document.getElementById("buylist");
-let btnAñadir = document.getElementById("add");
 let btnLogin = document.getElementById("login");
 let btnLogout = document.getElementById("logout");
 let btnSignin = document.getElementById("signin");
@@ -9,6 +8,7 @@ let btnSignin = document.getElementById("signin");
 //#region Otros
 let carro = document.getElementById("products");
 let msg = document.getElementById("user");
+const contenedorProductos = document.getElementById('products');
 //#endregion
 
 //local storage
@@ -19,7 +19,6 @@ let loged = localStorage.getItem("loged");
 
 //#region Eventos
 document.addEventListener("DOMContentLoaded", () => Load());
-btnAñadir.addEventListener("click", () => SumarAlCarro());
 btnCarro.addEventListener("click", () => LimpiarCarro());
 btnLogin.addEventListener("click", () => IrAlLogin());
 btnSignin.addEventListener("click", () => IrAlSignin());
@@ -31,6 +30,7 @@ function Load() {
   cargarCarro();
   cargarUser();
   configBtns();
+  generarTarjetas();
 }
 function SumarAlCarro() {
   let i = parseInt(carro.textContent);
@@ -83,5 +83,37 @@ function configBtns() {
     }
   }
 }
+function generarTarjetas() {
+  const contenedorProductos = document.getElementById("contenedorProductos");
+  contenedorProductos.innerHTML = "";
 
+  productos.forEach(producto => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      const imagen = document.createElement("img");
+      imagen.src = producto.imagen;
+      imagen.alt = producto.nombre;
+      imagen.title = producto.nombre;
+
+      const nombre = document.createElement("h3");
+      nombre.textContent = producto.nombre;
+
+      const precio = document.createElement("p");
+      precio.textContent = `$ ${producto.precio}`;
+
+      const boton = document.createElement("button")
+      boton.id = "add"
+      boton.type = "button"
+      boton.textContent = "Añadir a la cesta"
+      boton.addEventListener("click", () => SumarAlCarro());
+      
+      card.appendChild(imagen);
+      card.appendChild(nombre);
+      card.appendChild(precio);
+      card.appendChild(boton);
+
+      contenedorProductos.appendChild(card);
+  });
+}
 //#endregion

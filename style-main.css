@@ -17,7 +17,10 @@ section {
   display: flex;
 }
 .logo {
-  max-width: 30%;
+  width: 20%;
+  height: 20%;
+  max-width: 10rem;
+  max-height: 4rem;
 }
 #search {
   width: 50%;
@@ -57,4 +60,22 @@ section {
 }
 label {
   color: white;
+}
+#contenedorProductos{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  background-color: white;
+}
+.card img {
+  max-width: 100%;
+  height: auto;
 }
