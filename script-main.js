@@ -87,6 +87,10 @@ function configBtns() {
       loged = localStorage.getItem("loged");
       configBtns();
     }
+  }else {
+    localStorage.setItem("loged", 0);
+    loged = localStorage.getItem("loged");
+    configBtns();
   }
 }
 function generarTarjetas() {
