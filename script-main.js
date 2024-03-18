@@ -32,11 +32,17 @@ function Load() {
   configBtns();
   generarTarjetas();
 }
-function SumarAlCarro() {
-  let i = parseInt(carro.textContent);
-  i++;
-  carro.textContent = i.toString();
-  localStorage.setItem("carro", i);
+function SumarAlCarro(id, nombre, precio) {
+  if (loged == 1){
+    let i = parseInt(carro.textContent);
+    i++;
+    carro.textContent = i.toString();
+    localStorage.setItem("carro", i);
+    alert(`ID: ${id}\nNombre: ${nombre}\nPrecio: ${precio}\nAñadido al carrito.`);
+  }
+  else{
+    alert(`Debe iniciar sesion para poder usar el carrito de compras.`);
+  }
 }
 function LimpiarCarro() {
   carro.textContent = 0;
@@ -106,7 +112,7 @@ function generarTarjetas() {
       boton.id = "add"
       boton.type = "button"
       boton.textContent = "Añadir a la cesta"
-      boton.addEventListener("click", () => SumarAlCarro());
+      boton.addEventListener("click", () => SumarAlCarro(producto.ID, nombre.textContent, precio.textContent));
       
       card.appendChild(imagen);
       card.appendChild(nombre);

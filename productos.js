@@ -1,6 +1,6 @@
 let productos = [];
 
-function generarNombreEImagen() {
+function generarNombreEImagen(id) {
   const nombres = [
     "Ryzen 3",
     "Intel Core i5",
@@ -18,6 +18,7 @@ function generarNombreEImagen() {
 
   const indice = Math.floor(Math.random() * nombres.length);
   const producto = {
+    ID: id + 1563,
     nombre: nombres[indice],
     imagen: imagenes[indice],
     precio: generarPrecio(),
@@ -27,15 +28,14 @@ function generarNombreEImagen() {
 
 // Método para generar un precio aleatorio
 function generarPrecio() {
-  return Math.floor(Math.random() * 500000) + 50000; // Precio entre 1000 y 100000
+  return Math.floor(Math.random() * 500000) + 50000; 
 }
 
 function generarRegistrosAleatorios() {
   for (let i = 0; i < 100; i++) {
-    const producto = generarNombreEImagen();
+    const producto = generarNombreEImagen(i);
     productos.push(producto);
   }
 }
 
-// Llamar al método para generar los registros aleatorios
 generarRegistrosAleatorios();

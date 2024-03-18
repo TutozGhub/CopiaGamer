@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(52, 0, 95));
+  background: linear-gradient(to right, rgb(0, 0, 0), rgb(52, 0, 95));
   background-size: 100vw 100vw;
   justify-content: center;
   align-items: center;
