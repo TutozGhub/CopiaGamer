@@ -8,9 +8,15 @@ let error = document.getElementById("error");
 const usuarioMem = JSON.parse(localStorage.getItem("USUARIO"));
 
 //eventos
-btnLogin.addEventListener("click", () => Login());
+btnLogin.addEventListener("click", Login);
+psw.addEventListener("keypress", EnterPress);
 
 //funciones
+function EnterPress(event) {
+  if (event.key === "Enter") {
+    btnLogin.click();
+  }
+}
 function Login() {
   let rta = validacion();
   if (rta.b) {
@@ -27,15 +33,15 @@ function validacion() {
   let contraseña = psw.value;
   let usrs = ["admin"];
   let psws = ["admin"];
-  if (usuarioMem){
-    usrs.push(usuarioMem.username)
-    psws.push(usuarioMem.password)
+  if (usuarioMem) {
+    usrs.push(usuarioMem.username);
+    psws.push(usuarioMem.password);
   }
   if (isNullOrEmpty(usuario) || isNullOrEmpty(contraseña)) {
     return { b: false, ex: "Hay campos sin completar." };
   }
   if (usrs.includes(usuario)) {
-    if (psws[usrs.indexOf(usuario)] != contraseña){
+    if (psws[usrs.indexOf(usuario)] != contraseña) {
       return { b: false, ex: "Nombre de usuario o contraseña incorrecto." };
     }
   } else {
