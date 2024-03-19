@@ -55,9 +55,7 @@ function cargarCarro() {
 }
 function cargarUser() {
   if (usernameMem) {
-    msg.textContent = "Bienvenido " + usernameMem;
-  } else {
-    msg.textContent = "Bienvenido, por favor inicie sesión.";
+    msg.textContent = usernameMem;
   }
 }
 function IrAlLogin() {
@@ -67,6 +65,7 @@ function IrAlSignin() {
   window.location.href = "signin.html";
 }
 function LogOut() {
+  localStorage.setItem("carro", 0);
   localStorage.removeItem("usernameMem");
   localStorage.setItem("loged", 0);
   IrAlLogin();

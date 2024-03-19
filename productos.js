@@ -32,7 +32,7 @@ function generarPrecio() {
 }
 
 function generarRegistrosAleatorios() {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 20; i++) {
     const producto = generarNombreEImagen(i);
     productos.push(producto);
   }
