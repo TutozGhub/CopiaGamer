@@ -168,14 +168,9 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.foot__4{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img, a{
-        margin: 5px auto;
+    a{
+        border-radius: 100%;
+        margin: 5px;
     }
 }
 .foot__redes{
@@ -191,7 +186,6 @@ footer{
     }
     .cbtn{
         padding: 3px;
-        margin: 5px;
         border: solid #{$blanco} 1px;
         border-radius: 100%;
         transition: 100ms;
@@ -201,5 +195,14 @@ footer{
         .img{
             filter: none;
         }
+    }
+}
+.foot__4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img, a{
+        margin: 5px auto;
     }
 }
