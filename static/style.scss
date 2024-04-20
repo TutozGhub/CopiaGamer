@@ -178,3 +178,28 @@ footer{
         margin: 5px auto;
     }
 }
+.foot__redes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #{$primario};
+    justify-content: center;
+    .img{
+        max-width: 25px;
+        margin: 5px;
+        filter: brightness(0) invert(1);
+    }
+    .cbtn{
+        padding: 3px;
+        margin: 5px;
+        border: solid #{$blanco} 1px;
+        border-radius: 100%;
+        transition: 100ms;
+    }
+    .cbtn:hover{
+        background-color: #{$blanco};
+        .img{
+            filter: none;
+        }
+    }
+}

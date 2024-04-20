@@ -179,4 +179,30 @@ footer h5 {
 }
 .foot__4 img, .foot__4 a {
   margin: 5px auto;
+}
+
+.foot__redes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #fd611a;
+  justify-content: center;
+}
+.foot__redes .img {
+  max-width: 25px;
+  margin: 5px;
+  filter: brightness(0) invert(1);
+}
+.foot__redes .cbtn {
+  padding: 3px;
+  margin: 5px;
+  border: solid #fff 1px;
+  border-radius: 100%;
+  transition: 100ms;
+}
+.foot__redes .cbtn:hover {
+  background-color: #fff;
+}
+.foot__redes .cbtn:hover .img {
+  filter: none;
 }/*# sourceMappingURL=style.css.map */
