@@ -19,8 +19,8 @@
 
                 <div class="nav nav__buscar">
                     <div class="form-floating mb-3 buscar">
-                        <input id="search" class="form-control nav__buscar--buscar" type="text" placeholder="Buscar productos">
-                        <label class="label-search" for="search">Buscador</label>
+                        <input id="search" class="form-control nav__buscar--buscar shadow-off" type="text" placeholder="Buscar productos">
+                        <label class="label-animated" for="search">Buscador</label>
                     </div>
                     <div class="nav">
                         <img class="nav__buscar--logo" src="https://cdn.icon-icons.com/icons2/1129/PNG/512/searchmagnifierinterfacesymbol1_79893.png" alt="buscar">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="nav nav__usuario">
-                    <button class="btn btn-primary btn-bd-primary nav__usuario--btn">
+                    <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button" data-bs-toggle="modal" data-bs-target="#login" >
                         <span>
                             <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png">
                             Iniciar Sesión
@@ -43,7 +43,6 @@
         </header>
         <main>
             {% block main %}
-                
             {% endblock %}
         </main>
         <footer>

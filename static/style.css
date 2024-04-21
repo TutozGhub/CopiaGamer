@@ -19,9 +19,10 @@ body {
 .nav__buscar .form-floating {
   min-width: 100%;
 }
-.nav__buscar .label-search {
+
+.label-animated {
   color: gray;
-  transition: 100ms;
+  transition: 100ms !important;
 }
 
 .buscar {
@@ -37,7 +38,6 @@ body {
 #search:focus {
   border-color: #fd611a !important;
   border-width: 2px !important;
-  box-shadow: none;
 }
 
 .nav__buscar--logo {
@@ -48,16 +48,6 @@ body {
   max-width: 20px;
 }
 
-@media (width < 1280px) {
-  .nav__buscar--logo {
-    margin-right: 13%;
-  }
-}
-@media (width < 500px) {
-  .nav__buscar--logo {
-    margin-right: 20%;
-  }
-}
 .btn-bd-primary {
   --bs-btn-font-weight: 600;
   --bs-btn-border-radius: .2rem;
@@ -236,4 +226,110 @@ footer h5 {
 }
 .foot__4 img, .foot__4 a {
   margin: 5px auto;
+}
+
+.shadow-off {
+  box-shadow: none !important;
+}
+
+.btn-crear-cuenta {
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: .2rem;
+  --bs-btn-color: #fd611a;
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: lightgray;
+  --bs-btn-hover-color: #fd611a;
+  --bs-btn-hover-bg: #fff;
+  --bs-btn-hover-border-color: lightgray;
+  --bs-btn-active-color: #fd611a;
+  --bs-btn-active-bg: #ffede4;
+  --bs-btn-active-border-color: lightgray;
+}
+
+.login {
+  justify-content: center;
+  animation: menuIn 100ms;
+}
+
+@keyframes menuIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.login-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-titulo small {
+  color: #fd611a;
+}
+
+.login-content {
+  min-width: 580px !important;
+  border-radius: 5px;
+}
+
+.login-body {
+  margin: 15px 50px;
+  font-size: 15px !important;
+}
+.login-body .label-animated {
+  color: #f44336 !important;
+}
+
+.login-btn-close {
+  border-radius: 100%;
+  opacity: 100%;
+  margin-top: 2%;
+  margin-left: 95%;
+  background-color: gray;
+  max-width: 5px !important;
+  max-height: 5px !important;
+  background-size: 9px !important;
+  filter: invert(1);
+  padding: 7px !important;
+}
+
+.login-control {
+  border-radius: 0;
+  border-style: none none solid none;
+  border-bottom-color: #f44336;
+}
+
+.login-control:focus {
+  border-width: 2px !important;
+  border-bottom-color: #f44336;
+}
+
+.login-footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.login-footer :nth-child(2) {
+  margin-top: 8px;
+}
+
+@media (width <= 1280px) {
+  .nav__buscar--logo {
+    margin-right: 13%;
+  }
+}
+@media (width <= 580px) {
+  .login {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .login-content {
+    min-width: 100% !important;
+  }
+}
+@media (width < 500px) {
+  .nav__buscar--logo {
+    margin-right: 20%;
+  }
 }/*# sourceMappingURL=style.css.map */
