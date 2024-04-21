@@ -16,20 +16,48 @@ body {
   min-width: 33%;
   margin: 0 1rem 0 2rem;
 }
+.nav__buscar .form-floating {
+  min-width: 100%;
+}
+.nav__buscar .label-search {
+  color: gray;
+  transition: 100ms;
+}
+
+.buscar {
+  margin-top: 5px;
+  margin-bottom: 1px !important;
+}
 
 .nav__buscar--buscar {
-  width: 90%;
+  width: 90% !important;
   height: 3.5rem;
+}
+
+#search:focus {
+  border-color: #fd611a !important;
+  border-width: 2px !important;
+  box-shadow: none;
 }
 
 .nav__buscar--logo {
   vertical-align: middle;
   position: absolute;
   margin-top: 3px;
-  margin-right: 3rem;
+  margin-right: 10%;
   max-width: 20px;
 }
 
+@media (width < 1280px) {
+  .nav__buscar--logo {
+    margin-right: 13%;
+  }
+}
+@media (width < 500px) {
+  .nav__buscar--logo {
+    margin-right: 20%;
+  }
+}
 .btn-bd-primary {
   --bs-btn-font-weight: 600;
   --bs-btn-border-radius: .2rem;
@@ -107,7 +135,7 @@ footer h5 {
 
 .foot {
   padding: 50px 25px;
-  border-left: 1px solid #fff;
+  border-left: 1px groove #fea77f;
 }
 
 .foot--img {
