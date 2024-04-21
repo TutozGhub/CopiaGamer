@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, session, redirect
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
 
+from metodos import *
+
 app = Flask(__name__)
 
 app.config["SESSION_PERMANENT"] = False
@@ -15,17 +17,23 @@ db = SQL("sqlite:///src/database/database.sqlite3")
 def index():
     if request.method == "POST":
         usr = request.form.get("username")
-        psw = request.form.get("password")
-        
-        res = db.execute("SELECT * FROM usuarios WHERE username=? AND hash=?", usr, psw)
-        if (len(res) == 1):
-            app.logger.debug("Logeado")
-        else:
-            app.logger.debug("Usuario o contraseña incorrectos")
-    
-    return render_template('login.html')
+        psw = usr+request.form.get("password")
+        res = db.execute("SELECT * FROM usuarios WHERE username=?", usr)
 
-@app.route("/logout")
+        if (len(res) == 1):
+            hash_psw = res[0]['hash']
+            if check_password_hash(hash_psw, psw):
+                app.logger.debug("Logeado")
+                session["id_usuario"] = res[0]['id']
+                session["usuario"] = res[0]['username']
+                return redirect('/')
+        
+        app.logger.debug("Error al logear")
+        return error("Nombre o contraseña incorrectos.")
+
+    return render_template('index.html')
+
+@app.route("/logout", methods=['POST', 'GET'])
 def logout():
     """Log user out"""
 

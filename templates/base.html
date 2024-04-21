@@ -8,7 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/static/style.css">
         <title>{% block titulo %}COPIA GAMER{% endblock %}</title>
-        {% block script_h %}{% endblock %}
+        {% block head %}{% endblock %}
     </head>
     <body>
         <header>
@@ -28,12 +28,26 @@
                 </div>
 
                 <div class="nav nav__usuario">
-                    <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button" data-bs-toggle="modal" data-bs-target="#login" >
-                        <span>
-                            <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png">
-                            Iniciar Sesión
-                        </span>
-                    </button>
+                    {% if session["id_usuario"] %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ session["usuario"] }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><button type="submit" class="dropdown-item">Mi Cuenta</button></li>
+                                <form action="/logout" method="get">
+                                    <li><button type="submit" class="dropdown-item">Cerrar Sesión</button></li>
+                                </form>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button" data-bs-toggle="modal" data-bs-target="#login" >
+                            <span>
+                                <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png">
+                                Iniciar Sesión
+                            </span>
+                        </button>
+                    {% endif %}
                     <div class="nav__usuario--carrito">
                         <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="Carrito">
                         <div class="nav__usuario--contador">0</div>
@@ -42,6 +56,39 @@
             </nav>
         </header>
         <main>
+            <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered login">
+                    <div class="modal-content login-content">
+                        <button type="button" class="btn-close login-btn-close shadow-off" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="modal-body login-body">
+                            <div class="login-titulo">
+                                <h4>Iniciar sesión</h4>
+                                <small>Para comenzar ingrese su usuario</small>
+                            </div>
+                            <form action="/" method="POST">
+                                <div class="form-floating mb-3">
+                                    <input name="username" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="text" placeholder="Usuario" required>
+                                    <label class="label-animated" for="username">Usuario</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="password" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Contraseña" required>
+                                    <label class="label-animated" for="password">Contraseña</label>
+                                </div>
+                                <br>
+                                <div class="login-footer">
+                                    <button type="submit" class="btn btn-bd-primary">CONTINUAR</button>
+                                    <button type="button" class="btn btn-crear-cuenta">CREAR CUENTA</button>
+                                    <br>
+                                    <div class="modal-footer">
+                                        <small>Si tenés problemas para iniciar sesión escribinos a feedback_nuevapagina@compragamer.net</small>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% block main %}
             {% endblock %}
         </main>
