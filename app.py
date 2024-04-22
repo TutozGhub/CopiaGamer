@@ -1,6 +1,4 @@
-from cs50 import SQL
 from flask import Flask, render_template, request, session, redirect
-from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
 
 from metodos import *
@@ -11,27 +9,24 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-db = SQL("sqlite:///src/database/database.sqlite3")
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    res = eventos()
+    return render_template('index.html', fondo="#fff", images=res)
+
+@app.route('/login', methods=['POST'])
+def login():
     if request.method == "POST":
-        usr = request.form.get("username")
-        psw = usr+request.form.get("password")
-        res = db.execute("SELECT * FROM usuarios WHERE username=?", usr)
-
-        if (len(res) == 1):
-            hash_psw = res[0]['hash']
-            if check_password_hash(hash_psw, psw):
-                app.logger.debug("Logeado")
-                session["id_usuario"] = res[0]['id']
-                session["usuario"] = res[0]['username']
-                return redirect('/')
+        res = val_login(request.form)
         
-        app.logger.debug("Error al logear")
-        return error("Nombre o contraseña incorrectos.")
-
-    return render_template('index.html')
+        if res[0]:
+            app.logger.debug("Logeado")
+            session["id_usuario"] = res[1]
+            session["nombre"] = res[2]
+            return redirect('/')
+        else:
+            app.logger.debug("Error al logear")
+            return error(res[1])
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
@@ -42,3 +37,12 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == "POST":
+        res = val_register(request.form)
+        if res[0]:
+            return redirect('/')
+        else:
+            return error(res[1])

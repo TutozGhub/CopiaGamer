@@ -6,7 +6,8 @@ $blanco: #fff;
 
 
 body{
-    background-color: #{$fondo};
+    --fondo: #{$fondo};
+    background-color: var(--fondo);
     font-family: montserrat, sans-serif;
 }
 
@@ -303,6 +304,45 @@ footer{
     :nth-child(2){
         margin-top: 8px;
     }
+}
+
+// Menú
+
+.menu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #{$primario};
+
+    div{
+        margin: 0 1.1rem;
+        padding: 1.2rem 0;
+        width: 160px;
+        text-align: center;
+    }
+    a{
+        font-family: montserrat;
+        font-size: 15px;
+        font-weight: 600;
+        color: black;
+        text-decoration: none;
+    }
+    a:hover{
+        color: #{$blanco};
+    }
+}
+
+// Sponsors
+
+.sponsors{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.sponsor{
+    max-width: 150px;
 }
 
 // @media querys

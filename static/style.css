@@ -1,5 +1,6 @@
 body {
-  background-color: #eeeeee;
+  --fondo: #eeeeee;
+  background-color: var(--fondo);
   font-family: montserrat, sans-serif;
 }
 
@@ -312,6 +313,41 @@ footer h5 {
 }
 .login-footer :nth-child(2) {
   margin-top: 8px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #fd611a;
+}
+.menu div {
+  margin: 0 1.1rem;
+  padding: 1.2rem 0;
+  width: 160px;
+  text-align: center;
+}
+.menu a {
+  font-family: montserrat;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
+.menu a:hover {
+  color: #fff;
+}
+
+.sponsors {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.sponsor {
+  max-width: 150px;
 }
 
 @media (width <= 1280px) {

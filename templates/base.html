@@ -9,12 +9,16 @@
         <link rel="stylesheet" href="/static/style.css">
         <title>{% block titulo %}COPIA GAMER{% endblock %}</title>
         {% block head %}{% endblock %}
+        {% block script_h %}{% endblock %}
     </head>
-    <body>
+    <body {% if fondo %}
+        style="--fondo: {{fondo}} !important;"
+    {% endif %}>
         <header>
             <nav class="nav">
                 <div class="nav nav__logo">
-                    <img src="/static/image/copiagamer.png" alt="compra gamer">
+                    <a href="/">
+                        <img src="/static/image/copiagamer.png" alt="compra gamer"></a>
                 </div>
 
                 <div class="nav nav__buscar">
@@ -26,18 +30,15 @@
                         <img class="nav__buscar--logo" src="https://cdn.icon-icons.com/icons2/1129/PNG/512/searchmagnifierinterfacesymbol1_79893.png" alt="buscar">
                     </div>
                 </div>
-
                 <div class="nav nav__usuario">
                     {% if session["id_usuario"] %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ session["usuario"] }}
+                            <a class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ session["nombre"] }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><button type="submit" class="dropdown-item">Mi Cuenta</button></li>
-                                <form action="/logout" method="get">
-                                    <li><button type="submit" class="dropdown-item">Cerrar Sesión</button></li>
-                                </form>
+                                <li><a href="/cuenta" class="dropdown-item">Mi Cuenta</a></li>
+                                <li><a href="/logout" class="dropdown-item">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     {% else %}
@@ -54,8 +55,31 @@
                     </div>
                 </div>
             </nav>
+            <div class="menu">
+                <div>
+                    <a href="/productos">
+                        PRODUCTOS
+                    </a>
+                </div>
+                <div>
+                    <a href="/">
+                        ARMÁ TU PC
+                    </a>
+                </div>
+                <div>
+                    <a href="/ayuda">
+                        AYUDA
+                    </a>
+                </div>
+                <div>
+                    <a href="/marcas">
+                        MARCAS SPONSOR
+                    </a>
+                </div>  
+            </div>
         </header>
         <main>
+            {% if not session["id_usuario"] %}
             <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered login">
                     <div class="modal-content login-content">
@@ -65,7 +89,7 @@
                                 <h4>Iniciar sesión</h4>
                                 <small>Para comenzar ingrese su usuario</small>
                             </div>
-                            <form action="/" method="POST">
+                            <form action="/login" method="POST">
                                 <div class="form-floating mb-3">
                                     <input name="username" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="text" placeholder="Usuario" required>
                                     <label class="label-animated" for="username">Usuario</label>
@@ -77,30 +101,96 @@
                                 <br>
                                 <div class="login-footer">
                                     <button type="submit" class="btn btn-bd-primary">CONTINUAR</button>
-                                    <button type="button" class="btn btn-crear-cuenta">CREAR CUENTA</button>
+                                    <button type="button" class="btn btn-crear-cuenta" data-bs-target="#register" data-bs-toggle="modal">CREAR CUENTA</button>
                                     <br>
                                     <div class="modal-footer">
                                         <small>Si tenés problemas para iniciar sesión escribinos a feedback_nuevapagina@compragamer.net</small>
                                     </div>
                                 </div>
                             </form>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered login">
+                    <div class="modal-content login-content">
+                        <button type="button" class="btn-close login-btn-close shadow-off" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        <div class="modal-body login-body">
+                            <div class="login-titulo">
+                                <h4>Registrarse</h4>
+                                <small>Ingresá tus datos para crear tu cuenta</small>
+                            </div>
+                            <br>
+                            <form action="/register" method="POST" class="row g-3">
+                                <div class="form-floating mb-3 col-md-6">
+                                    <input name="name" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="text" placeholder="Usuario" required>
+                                    <label class="label-animated" for="username">Nombre</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6">
+                                    <input class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Usuario" disabled readonly value="*****">
+                                    <label class="label-animated" for="username">Apellido</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="username" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="text" placeholder="Usuario" required>
+                                    <label class="label-animated" for="username">Usuario</label>
+                                </div>
+                                <h5>Teléfono de contacto</h5>
+                                <div class="form-floating mb-3 col-md-4">
+                                    <input class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Contraseña" disabled readonly value="*****">
+                                    <label class="label-animated" for="password">Código de área</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-8">
+                                    <input class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Contraseña" disabled readonly value="*****">
+                                    <label class="label-animated" for="password">Número de telefono</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6">
+                                    <input name="password" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Contraseña" required>
+                                    <label class="label-animated" for="password">Contraseña</label>
+                                </div>
+                                <div class="form-floating mb-3 col-md-6">
+                                    <input name="password2" class="form-control login-control shadow-off"  autocomplete="off" autofocus type="password" placeholder="Contraseña" required>
+                                    <label class="label-animated" for="password">Repetir contraseña</label>
+                                </div>
+                                <br>
+                                <div class="login-footer">
+                                    <button type="submit" class="btn btn-bd-primary">REGISTRARME</button>
+                                    <br>
+                                    <div class="modal-footer" style="justify-content: center;">
+                                        <small>¿Ya tenés cuenta? Inicia sesión <a style="color: #627afe;" type="button" data-bs-target="#login" data-bs-toggle="modal">aca</a></small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             {% block main %}
+
             {% endblock %}
         </main>
+        
+        <div class="sponsors">
+            <div>
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_316_9_591.png" class="d-block w-100">
+            </div>
+            <div>
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_371_9_755.jpg" class="d-block w-100">
+            </div>
+            <div>
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_320_9_411.jpg" class="d-block w-100">
+            </div>
+        </div>
         <footer>
             <div class="footer">
                 <div class="foot foot__1">
                     <img class="foot__1--img foot--img" src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="data fiscal">
                 </div>
                 <div class="foot foot__2">
-                    <button class="btn btn-primary foot__2--btn1">Ayuda</button>
-                    <button class="btn btn-primary foot__2--btn2">Botón de arrepentimiento</button>
-                    <a href="#">Términos y condiciones</a>
+                    <a href="/ayuda"><button type="button" class="btn btn-primary foot__2--btn1">Ayuda</button></a>
+                    <a href="/"><button type="button" class="btn btn-primary foot__2--btn2">Botón de arrepentimiento</button></a>
+                    <a href="/">Términos y condiciones</a>
                 </div>
                 <div class="foot foot__3">
                     <h5>Seguinos en</h5>
@@ -117,7 +207,7 @@
                 </div>
                 <div class="foot foot__4">
                     <img class="foot__4--img foot--img" src="https://compragamer.com.ar/PatchRouterSection/assets/icons/gptw.svg" alt="certificado">
-                    <a href="#">¡Trabajá con nosotros!</a>
+                    <a href="/">¡Trabajá con nosotros!</a>
                 </div>
             </div>
         </footer>
