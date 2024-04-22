@@ -119,7 +119,7 @@ footer{
 }
 .footer{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.8fr 1fr 1fr 1.8fr
 }
 .foot{
     padding: 50px 25px;
@@ -364,5 +364,19 @@ footer{
 @media(width < 500px){
     .nav__buscar--logo{
         margin-right: 20%;
+    }
+}
+@media (width <= 820px){
+    .foot{
+        border-top: 1px groove #{lighten($primario, 20%)};
+    }
+    .foot:nth-child(1), .foot:nth-child(2){
+        border-top: none;
+    }
+    .footer{
+        grid-template-columns: 1fr 1fr;
+        :nth-child(3){
+            border-left: none;
+        }
     }
 }

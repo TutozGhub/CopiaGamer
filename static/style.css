@@ -121,7 +121,7 @@ footer h5 {
 
 .footer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.8fr 1fr 1fr 1.8fr;
 }
 
 .foot {
@@ -367,5 +367,19 @@ footer h5 {
 @media (width < 500px) {
   .nav__buscar--logo {
     margin-right: 20%;
+  }
+}
+@media (width <= 820px) {
+  .foot {
+    border-top: 1px groove #fea77f;
+  }
+  .foot:nth-child(1), .foot:nth-child(2) {
+    border-top: none;
+  }
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer :nth-child(3) {
+    border-left: none;
   }
 }/*# sourceMappingURL=style.css.map */
