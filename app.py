@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_session import Session
 
 from metodos import *
@@ -18,15 +18,14 @@ def index():
 def login():
     if request.method == "POST":
         res = val_login(request.form)
-        
         if res[0]:
             app.logger.debug("Logeado")
             session["id_usuario"] = res[1]
             session["nombre"] = res[2]
-            return redirect('/')
+            return jsonify({'success' : True, 'message' : ''})
         else:
             app.logger.debug("Error al logear")
-            return error(res[1])
+            return jsonify({'success': False, 'message': res[1]})
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
@@ -43,6 +42,6 @@ def register():
     if request.method == "POST":
         res = val_register(request.form)
         if res[0]:
-            return redirect('/')
+            return jsonify({'success': res[0], 'message': ''})
         else:
-            return error(res[1])
+            return jsonify({'success': res[0], 'message': res[1]})

@@ -316,6 +316,12 @@ footer h5 {
   margin-top: 8px;
 }
 
+.error-form {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
 .menu {
   display: flex;
   flex-direction: row;
