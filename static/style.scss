@@ -9,6 +9,7 @@ body{
     --fondo: #{$fondo};
     background-color: var(--fondo);
     font-family: montserrat, sans-serif;
+    overflow-x: hidden;
 }
 
 .nav{
@@ -340,10 +341,22 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    overflow-x: scroll;
 }
 .sponsor{
     max-width: 150px;
 }
+    .carousel-indicators{
+        position: relative;
+
+        button{
+            margin: 0 0.6rem !important;
+            height: 0.6rem !important;
+            width: 0.6rem !important;
+            border-radius: 100%;
+            background-color: #{$primario} !important;
+        }
+    }
 
 // @media querys
 

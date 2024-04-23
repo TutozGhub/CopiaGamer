@@ -2,6 +2,7 @@ body {
   --fondo: #eeeeee;
   background-color: var(--fondo);
   font-family: montserrat, sans-serif;
+  overflow-x: hidden;
 }
 
 .nav {
@@ -344,10 +345,22 @@ footer h5 {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  overflow-x: scroll;
 }
 
 .sponsor {
   max-width: 150px;
+}
+
+.carousel-indicators {
+  position: relative;
+}
+.carousel-indicators button {
+  margin: 0 0.6rem !important;
+  height: 0.6rem !important;
+  width: 0.6rem !important;
+  border-radius: 100%;
+  background-color: #fd611a !important;
 }
 
 @media (width <= 1280px) {
