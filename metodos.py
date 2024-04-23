@@ -51,3 +51,7 @@ def val_register(form):
 def eventos():
     res = db.execute("SELECT * FROM eventos")
     return res
+
+def ultimos_productos():
+    res = db.execute("SELECT * FROM productos ORDER BY id DESC LIMIT 10")
+    return res

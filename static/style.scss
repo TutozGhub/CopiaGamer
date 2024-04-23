@@ -364,6 +364,48 @@ footer{
         }
     }
 
+// Novedades
+
+.novedades{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    user-select: none;
+    a{
+        color: black;
+        text-decoration: none;
+    }
+}
+.card-ultimos{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: space-evenly;
+    margin: 0.7rem;
+    min-width: 20rem;
+    max-width: 25rem;
+    text-align: center;
+    border-color: rgb(240, 240, 240);
+    border-bottom-color: gray;
+    img{
+        margin: 1rem auto;
+        max-width: 10rem;
+    }
+}
+.ultimos-body{
+    small{
+        font-size: 14px;
+    }
+}
+.ultimo-precio{
+    padding: 1rem 0;
+    font-size: 20px;
+    margin-top: auto;
+    margin-bottom: 0;
+    color: #4675b9;
+}
+
+
 // @media querys
 
 @media(width <= 1280px){

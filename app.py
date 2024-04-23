@@ -12,7 +12,9 @@ Session(app)
 @app.route('/', methods=['POST', 'GET'])
 def index():
     res = eventos()
-    return render_template('index.html', fondo="#fff", images=res)
+    productos = ultimos_productos()
+
+    return render_template('index.html', fondo="#fff", images=res, productos=productos)
 
 @app.route('/login', methods=['POST'])
 def login():
