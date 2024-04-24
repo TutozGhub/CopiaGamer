@@ -352,6 +352,7 @@ footer h5 {
   flex-direction: row;
   justify-content: space-evenly;
   overflow-x: scroll;
+  background-color: #fff;
 }
 
 .sponsor {
@@ -409,6 +410,27 @@ footer h5 {
   margin-top: auto;
   margin-bottom: 0;
   color: #4675b9;
+}
+
+.producto {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.producto-info {
+  flex-basis: 40%;
+}
+
+.producto-img {
+  flex-basis: 10%;
+  width: 35rem;
+}
+
+.garantias {
+  color: #4caf50;
 }
 
 @media (width <= 1280px) {

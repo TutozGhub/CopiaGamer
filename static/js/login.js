@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    error_message('#login-form', '/login', '/', '#login-error')
-    error_message('#register-form', '/register', '/', '#register-error')
+    error_message('#login-form', '/login', '', '#login-error')
+    error_message('#register-form', '/register', '', '#register-error')
 });
 
 function error_message(ID_form, RUTA, RUTA_SALIDA, ID_error){

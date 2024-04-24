@@ -348,6 +348,7 @@ footer{
     flex-direction: row;
     justify-content: space-evenly;
     overflow-x: scroll;
+    background-color: #{$blanco};
 }
 .sponsor{
     max-width: 150px;
@@ -403,6 +404,26 @@ footer{
     margin-top: auto;
     margin-bottom: 0;
     color: #4675b9;
+}
+
+// Producto
+
+.producto{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.producto-info{
+    flex-basis: 40%;
+}
+.producto-img{
+    flex-basis: 10%;
+    width: 35rem;
+}
+.garantias{
+    color: #{$verde};
 }
 
 

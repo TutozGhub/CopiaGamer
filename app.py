@@ -37,7 +37,7 @@ def logout():
     session.clear()
 
     # Redirect user to login form
-    return redirect("/")
+    return redirect('/')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -47,3 +47,16 @@ def register():
             return jsonify({'success': res[0], 'message': ''})
         else:
             return jsonify({'success': res[0], 'message': res[1]})
+        
+@app.route('/producto', methods=['POST', 'GET'])
+def producto():
+    if request.method == "POST":
+        print("post")
+
+    id = request.args.get("id")
+    producto = consultar_producto(id)
+    
+    if len(producto):
+        error("Producto inexistente", 404)
+
+    return render_template('producto.html', fondo="#fff", producto=producto[0])

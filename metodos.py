@@ -55,3 +55,7 @@ def eventos():
 def ultimos_productos():
     res = db.execute("SELECT * FROM productos ORDER BY id DESC LIMIT 10")
     return res
+
+def consultar_producto(id):
+    res = db.execute("SELECT * FROM productos WHERE id=?", id)
+    return res

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="producto">
+    <div class="producto-div producto-img">
+        <img src="{{ producto['imagen'] }}" alt="foto">
+    </div>
+    <div class="producto-div producto-info">
+        <h4>{{ producto['nombre'] }}</h4>
+        <hr>
+        <button type="button" class="btn btn-secondary">ID: {{ producto['id'] }}</button>
+        <hr>
+        <p style="font-size: 1.9em; color: #4675b9;">
+            <strong>$ {{ producto['precio'] }}</strong>
+        </p>
+        <hr>
+            <div class="garantias">
+                <li>
+                    Garantía - 12 meses
+                </li>
+                <li>
+                    Stock disponible
+                </li>
+                <li>
+                    Envíos a todo el país.
+                </li>
+            </div>
+        <hr>
+        <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button">
+            <span>
+                SUMAR AL CARRITO
+            </span>
+        </button>
+        
+    </div>
+</div>
+<div>
+    
+</div>
+{% endblock %}
