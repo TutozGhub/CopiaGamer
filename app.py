@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, jsonify
+from flask import Flask, render_template, request, session, redirect, jsonify, url_for
 from flask_session import Session
 
 from metodos import *
@@ -59,3 +59,30 @@ def producto():
         return error("Producto inexistente", 404)
     print(producto)
     return render_template('producto.html', fondo="#fff", producto=producto[0])
+
+
+
+
+
+
+
+# CARGA -----------------------------------
+if app.debug:
+    @app.route('/cargar', methods=['POST', 'GET'])
+    def carga():
+        if request.method == "POST":
+            insert_producto(request.form)
+
+        cat = request.args.get("cat")
+        categorias = traer_cats()
+
+        if not cat:
+            cat_form = request.form.get("categoria")
+            if cat_form:
+                return redirect(f'/cargar?cat={cat_form}')
+            return render_template('carga de productos.html', categorias=categorias)
+        
+        subcategorias = traer_subcats(cat)
+        marcas = traer_marcas()
+            
+        return render_template('carga de productos.html', categorias=categorias, subcategorias=subcategorias, marcas=marcas)

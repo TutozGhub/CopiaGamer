@@ -75,3 +75,35 @@ def consultar_producto(id):
                      WHERE p.id=?
                     """, id)
     return res
+
+
+
+# CARGA
+
+def traer_cats():
+    res = db.execute("SELECT * FROM categorias")
+    return res
+
+def traer_subcats(id):
+    res = db.execute("SELECT * FROM subcategorias WHERE id_categoria = ?", id)
+    return res
+def traer_marcas():
+    res = db.execute("SELECT * FROM marcas")
+    return res
+
+def insert_producto(form):
+    nombre = form.get('nombre')
+    subcat = form.get('subcat')
+    precio = form.get('precio')
+    foto = form.get('foto')
+    marca = form.get('marca')
+
+    if not nombre or not subcat or not precio or not foto or not marca:
+        return False
+
+    db.execute("""
+            INSERT INTO productos
+             (nombre, subcategoria, precio, imagen, id_marca)
+             VALUES (?,?,?,?,?);
+            """, nombre, subcat, precio, foto, marca)
+    return True

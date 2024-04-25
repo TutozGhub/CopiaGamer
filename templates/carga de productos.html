@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de productos</title>
+</head>
+<body>
+    {% if subcategorias %}
+        <form action="/cargar" method="POST">
+            <label for="">Nombre</label>
+            <input name="nombre" type="text">
+            <hr>
+            <label for="">Categoria</label>
+            <select name="categoria" id="">
+                {% for c in categorias %}
+                    <option value="{{ c['id'] }}">{{ c['nombre'] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Traer</button>
+            <hr>
+            <label for="">Subcategoria</label>
+            <select name="subcat" id="">
+                {% for s in subcategorias %}
+                    <option value="{{ s['id'] }}">{{ s['nombre'] }}</option>
+                {% endfor %}
+            </select>
+            <hr>
+            <label for="">Marca</label>
+            <select name="marca" id="">
+                {% for m in marcas %}
+                    <option value="{{ m['id'] }}">{{ m['nombre'] }}</option>
+                {% endfor %}
+            </select>
+            <hr>
+            <label for="">Precio</label>
+            <input name="precio" type="number">
+            <hr>
+            <label for="">Foto</label>
+            <input name="foto" type="text">
+            <hr>
+            <button type="submit">Cargar Producto</button>
+        </form>
+
+    {% else %}
+        <form action="/cargar" method="POST">
+        <label for="">Categoria</label>
+        <select name="categoria" id="">
+            {% for c in categorias %}
+                <option value="{{ c['id'] }}">{{ c['nombre'] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Traer</button>
+    </form>
+    {% endif %}
+</body>
+</html>
