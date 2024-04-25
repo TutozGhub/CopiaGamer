@@ -3,7 +3,11 @@ from flask_session import Session
 
 from metodos import *
 
+
 app = Flask(__name__)
+
+app.jinja_env.filters["M"] = moneda
+app.jinja_env.filters["Tmax"] = max_len
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -31,12 +35,7 @@ def login():
 
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
-    """Log user out"""
-
-    # Forget any user_id
     session.clear()
-
-    # Redirect user to login form
     return redirect('/')
 
 @app.route('/register', methods=['POST'])
@@ -56,7 +55,7 @@ def producto():
     id = request.args.get("id")
     producto = consultar_producto(id)
     
-    if len(producto):
-        error("Producto inexistente", 404)
-
+    if len(producto) == 0:
+        return error("Producto inexistente", 404)
+    print(producto)
     return render_template('producto.html', fondo="#fff", producto=producto[0])

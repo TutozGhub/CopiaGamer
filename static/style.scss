@@ -343,6 +343,12 @@ footer{
 
 // Sponsors
 
+#eventos{
+    display: flex;
+    flex-direction: column;
+    max-width: 1600px;
+    margin: 0 auto;
+}
 .sponsors{
     display: flex;
     flex-direction: row;

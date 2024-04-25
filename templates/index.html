@@ -13,14 +13,6 @@
                 </div>
         {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#eventos" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#eventos" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
     <div class="carousel-indicators">
         {% for i in images %}
             <button
@@ -46,10 +38,10 @@
                 <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}">
                 <div class="card-body ultimos-body">
                     <small class="card-text">
-                        {{ p['nombre'] }}
+                        {{ p['nombre'] | Tmax(89) }}
                     </small>
                 </div>
-                <p class="ultimo-precio">$ {{ p['precio'] }}</p>
+                <p class="ultimo-precio">{{ p['precio'] | M }}</p>
             </a>
         </div>
         {% endfor %}

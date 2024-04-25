@@ -7,6 +7,15 @@ db = SQL("sqlite:///src/database/database.sqlite3")
 def error(mensaje, error=400):
     return render_template("error.html", error=error, mensaje=mensaje), error
 
+def moneda(value):
+    return f"$ {value:,.0f}".replace(",", ".")
+
+def max_len(value, max_caracteres = 89):
+    if len(value) > max_caracteres:
+        return value[:max_caracteres] + "..."
+    else:
+        return value
+
 def val_login(form):
     username = form.get("username")
     password = username + form.get("password")
@@ -57,5 +66,12 @@ def ultimos_productos():
     return res
 
 def consultar_producto(id):
-    res = db.execute("SELECT * FROM productos WHERE id=?", id)
+    res = db.execute("""
+                    SELECT p.id, p.nombre, precio, imagen, c.nombre AS [categoria], sc.nombre AS [subcategoria], m.nombre AS [marca]
+                     FROM productos AS p
+                     JOIN subcategorias AS sc ON p.subcategoria = sc.id
+                     JOIN categorias AS c ON c.id = sc.id_categoria
+                     JOIN marcas AS m ON m.id = p.id_marca
+                     WHERE p.id=?
+                    """, id)
     return res

@@ -7,11 +7,12 @@
     </div>
     <div class="producto-div producto-info">
         <h4>{{ producto['nombre'] }}</h4>
+        <small><small>{{ producto['categoria'] }} > {{ producto['subcategoria'] }} > {{ producto['marca'] }}</small></small>
         <hr>
         <button type="button" class="btn btn-secondary">ID: {{ producto['id'] }}</button>
         <hr>
         <p style="font-size: 1.9em; color: #4675b9;">
-            <strong>$ {{ producto['precio'] }}</strong>
+            <strong>{{ producto['precio'] | M }}</strong>
         </p>
         <hr>
             <div class="garantias">
