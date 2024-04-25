@@ -419,25 +419,79 @@ footer h5 {
   color: #4675b9;
 }
 
+.precio {
+  color: #4675b9;
+}
+
 .producto {
   display: flex;
   flex-direction: row;
-  margin: 1rem auto;
+  margin: 2rem auto;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+.producto-img {
+  flex-basis: 10%;
+  width: 40rem;
+}
+
 .producto-info {
+  margin-left: 5%;
+  max-width: 650px;
   flex-basis: 40%;
 }
 
-.producto-img {
-  flex-basis: 10%;
-  width: 35rem;
+.producto-id {
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: 2rem;
+  --bs-btn-color: black;
+  --bs-btn-bg: #e0e0e0;
+  --bs-btn-border-color: #e0e0e0;
+  --bs-btn-hover-color: black;
+  --bs-btn-hover-bg: #e0e0e0;
+  --bs-btn-hover-border-color: #e0e0e0;
+  --bs-btn-active-color: black;
+  --bs-btn-active-bg: #cecece;
+  --bs-btn-active-border-color: #e0e0e0;
+}
+
+.producto-div-precio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  max-width: 60%;
+  min-height: 6rem;
+  flex-direction: column;
+  margin: auto;
+}
+
+.precio-div {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.producto-pagogamer {
+  max-width: 264px;
+  max-height: 110px;
+}
+
+.prodcuto-precio-valor {
+  font-size: 1.9em;
+  margin: 0;
 }
 
 .garantias {
   color: #4caf50;
+}
+.garantias p {
+  margin: 0;
+}
+.garantias img {
+  max-width: 40px;
 }
 
 @media (width <= 1280px) {
@@ -445,18 +499,16 @@ footer h5 {
     margin-right: 13%;
   }
 }
-@media (width <= 580px) {
-  .login {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+@media (width < 834px) {
+  .producto-info {
+    margin-top: 2rem;
+    flex-basis: 70%;
   }
-  .login-content {
-    min-width: 100% !important;
+  .producto-div-precio {
+    max-width: 100%;
   }
-}
-@media (width < 500px) {
-  .nav__buscar--logo {
-    margin-right: 20%;
+  .precio-div {
+    flex-direction: column;
   }
 }
 @media (width <= 820px) {
@@ -471,5 +523,19 @@ footer h5 {
   }
   .footer :nth-child(3) {
     border-left: none;
+  }
+}
+@media (width <= 580px) {
+  .login {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .login-content {
+    min-width: 100% !important;
+  }
+}
+@media (width < 500px) {
+  .nav__buscar--logo {
+    margin-right: 20%;
   }
 }/*# sourceMappingURL=style.css.map */
