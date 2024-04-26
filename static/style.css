@@ -433,7 +433,10 @@ footer h5 {
 
 .producto-img {
   flex-basis: 10%;
-  width: 40rem;
+  width: 100%;
+}
+.producto-img img {
+  width: 30rem;
 }
 
 .producto-info {
@@ -500,6 +503,9 @@ footer h5 {
   }
 }
 @media (width < 834px) {
+  .producto {
+    flex-direction: column;
+  }
   .producto-info {
     margin-top: 2rem;
     flex-basis: 70%;
@@ -509,6 +515,20 @@ footer h5 {
   }
   .precio-div {
     flex-direction: column;
+  }
+  .producto-img {
+    display: flex;
+    flex-basis: 10%;
+  }
+  .producto-img img {
+    margin: auto;
+    width: 90%;
+  }
+  .producto-div-btn {
+    display: flex;
+  }
+  .producto-div-btn button {
+    width: 90%;
   }
 }
 @media (width <= 820px) {

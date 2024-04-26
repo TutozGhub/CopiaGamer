@@ -427,7 +427,10 @@ footer{
 }
 .producto-img{
     flex-basis: 10%;
-    width: 40rem;
+    width: 100%;
+    img{
+        width: 30rem;
+    }
 }
 .producto-info{
     margin-left: 5%;
@@ -494,16 +497,33 @@ footer{
     }
 }
 @media (width < 834px){
-.producto-info{
-    margin-top: 2rem;
-    flex-basis: 70%;
-}
-.producto-div-precio{
-    max-width: 100%;
-}
-.precio-div{
-    flex-direction: column;
-}
+    .producto{
+        flex-direction: column;
+    }
+    .producto-info{
+        margin-top: 2rem;
+        flex-basis: 70%;
+    }
+    .producto-div-precio{
+        max-width: 100%;
+    }
+    .precio-div{
+        flex-direction: column;
+    }
+    .producto-img{
+        display: flex;
+        flex-basis: 10%;
+        img{
+            margin: auto;
+            width: 90%;
+        }
+    }
+    .producto-div-btn{
+        display: flex;
+        button{
+            width: 90%;
+        }
+    }
 }
 @media (width <= 820px){
     .foot{
