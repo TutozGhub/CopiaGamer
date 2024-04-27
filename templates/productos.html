@@ -32,12 +32,12 @@
                                             {{ c['nombre'] }}
                                         </button>
                                     </h2>
-                                    <div id="subcat_{{ c['id'] }}" class="accordion-collapse collapse" data-bs-parent="#subcategorias">
+                                    <div id="subcat_{{ c['id'] }}" class="accordion-collapse collapse {% if c['id'] == id_cat %} show {% endif %}" data-bs-parent="#subcategorias">
                                         {% for sc in subcats %}
                                             {% if c['id'] == sc['id_categoria'] %}
                                             <p class="mt-2 mx-4">
                                                 <small><small>
-                                                    <a href="?subcategoria={{ sc['id'] }}">
+                                                    <a href="?subcategoria={{ sc['id'] }}" class="{% if id_scat == sc['id'] %} principal {% endif %}">
                                                         - {{  sc['nombre']  }}
                                                     </a>
                                                 </small></small>

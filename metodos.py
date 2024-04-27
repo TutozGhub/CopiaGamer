@@ -91,10 +91,7 @@ def consultar_productos_subcat(id):
                      FROM productos
                      WHERE subcategoria=?
                     """, id)
-    if res == []:
-        return (False, '')
-    
-    return (True, res)
+    return res
 
 
 

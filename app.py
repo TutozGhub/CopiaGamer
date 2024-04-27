@@ -66,24 +66,28 @@ def productos():
     categorias = traer_categorias()
     subcategorias = traer_subcategorias()
     _scat = request.args.get('subcategoria', -1)
-
-    if not _scat.isdigit():
-        return error("Query invalida", 404)
+    id_scat = None
+    id_cat = None
 
     if _scat == -1:
         scat = 'destacados'
         productos = ultimos_productos(20)
     else:
+        found = False
         for sc in subcategorias:
             if int(_scat) == int(sc['id']):
+                id_scat = sc['id']
+                id_cat = sc['id_categoria']
                 scat = sc['nombre']
+                found = True
                 break;
-        productos = consultar_productos_subcat(int(_scat))
-        if not productos[0]:
-            return error("Categoria invalida", 404)
-        productos = productos[1]
+                
+        if not found:
+            return error('Categoria inexistente', 404)
 
-    return render_template('productos.html', scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
+        productos = consultar_productos_subcat(int(_scat))
+
+    return render_template('productos.html',id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
 

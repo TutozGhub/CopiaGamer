@@ -4,6 +4,9 @@ $fondo: #eeeeee;
 $verde: #4caf50;
 $blanco: #fff;
 
+.principal{
+    color: #{$primario} !important;
+}
 
 body{
     --fondo: #{$fondo};
