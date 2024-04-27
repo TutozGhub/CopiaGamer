@@ -7,8 +7,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/static/style.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="/static/js/login.js"></script>
         <title>{% block titulo %}COPIA GAMER{% endblock %}</title>
         <link rel="icon" href="/static/image/icono.png" />
         {% block head %}{% endblock %}
@@ -21,7 +19,7 @@
             <nav class="nav">
                 <div class="nav nav__logo">
                     <a href="/">
-                        <img src="/static/image/copiagamer.png" alt="compra gamer"></a>
+                        <img src="/static/image/copiagamer.png" alt="compra gamer" loading="lazy"></a>
                 </div>
 
                 <div class="nav nav__buscar">
@@ -47,13 +45,13 @@
                     {% else %}
                         <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button" data-bs-toggle="modal" data-bs-target="#login" >
                             <span>
-                                <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png">
+                                <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" loading="lazy">
                                 Iniciar Sesión
                             </span>
                         </button>
                     {% endif %}
                     <div class="nav__usuario--carrito">
-                        <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="Carrito">
+                        <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="Carrito" loading="lazy">
                         <div class="nav__usuario--contador">0</div>
                     </div>
                 </div>
@@ -178,19 +176,19 @@
         
         <div class="sponsors">
             <div>
-                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_316_9_591.png" class="d-block w-100">
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_316_9_591.png" class="d-block w-100" loading="lazy">
             </div>
             <div>
-                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_371_9_755.jpg" class="d-block w-100">
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_371_9_755.jpg" class="d-block w-100" loading="lazy">
             </div>
             <div>
-                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_320_9_411.jpg" class="d-block w-100">
+                <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_320_9_411.jpg" class="d-block w-100" loading="lazy">
             </div>
         </div>
         <footer>
             <div class="footer">
                 <div class="foot foot__1">
-                    <img class="foot__1--img foot--img" src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="data fiscal">
+                    <img class="foot__1--img foot--img" src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="data fiscal" loading="lazy">
                 </div>
                 <div class="foot foot__2">
                     <a href="/ayuda"><button type="button" class="btn btn-primary foot__2--btn1">Ayuda</button></a>
@@ -202,20 +200,22 @@
                     <div class="foot__redes">
                         <a href="https://www.linkedin.com/in/agustin-fizzano/">
                             <div class="cbtn">
-                                    <img class="img" src="/static/image/linkedin.png" alt="linkedin">
+                                    <img class="img" src="/static/image/linkedin.png" alt="linkedin" loading="lazy">
                             </div></a>
                         <a href="https://www.github.com/TutozGhub">
                             <div class="cbtn">
-                                    <img class="img" src="/static/image/github.png" alt="github">
+                                    <img class="img" src="/static/image/github.png" alt="github" loading="lazy">
                             </div></a>
                     </div>
                 </div>
                 <div class="foot foot__4">
-                    <img class="foot__4--img foot--img" src="https://compragamer.com.ar/PatchRouterSection/assets/icons/gptw.svg" alt="certificado">
+                    <img class="foot__4--img foot--img" src="https://compragamer.com.ar/PatchRouterSection/assets/icons/gptw.svg" alt="certificado" loading="lazy">
                     <a href="/">¡Trabajá con nosotros!</a>
                 </div>
             </div>
         </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/static/js/login.js"></script>
         {% block script_f %} 
             
         {% endblock %} 

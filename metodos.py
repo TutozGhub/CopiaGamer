@@ -1,6 +1,7 @@
-from flask import render_template
+from flask import render_template, g, request, redirect, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from cs50 import *
+from functools import wraps
 
 db = SQL("sqlite:///src/database/database.sqlite3")
 
@@ -15,6 +16,14 @@ def max_len(value, max_caracteres = 89):
         return value[:max_caracteres] + "..."
     else:
         return value
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('id_usuario') is None:
+            return redirect(url_for('index', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def val_login(form):
     username = form.get("username")
@@ -61,11 +70,11 @@ def eventos():
     res = db.execute("SELECT * FROM eventos")
     return res
 
-def ultimos_productos():
-    res = db.execute("SELECT * FROM productos ORDER BY id DESC LIMIT 10")
+def ultimos_productos(limite=20):
+    res = db.execute("SELECT * FROM productos ORDER BY id DESC LIMIT ?", limite)
     return res
 
-def consultar_producto(id):
+def consultar_producto_id(id):
     res = db.execute("""
                     SELECT p.id, p.nombre, precio, imagen, c.nombre AS [categoria], sc.nombre AS [subcategoria], m.nombre AS [marca]
                      FROM productos AS p
@@ -75,6 +84,17 @@ def consultar_producto(id):
                      WHERE p.id=?
                     """, id)
     return res
+
+def consultar_productos_subcat(id):
+    res = db.execute("""
+                    SELECT *
+                     FROM productos
+                     WHERE subcategoria=?
+                    """, id)
+    if res == []:
+        return (False, '')
+    
+    return (True, res)
 
 
 
@@ -107,3 +127,11 @@ def insert_producto(form):
              VALUES (?,?,?,?,?);
             """, nombre, subcat, precio, foto, marca)
     return True
+
+def traer_categorias():
+    res = db.execute("SELECT * FROM categorias ORDER BY nombre ASC")
+    return res
+
+def traer_subcategorias():
+    res = db.execute("SELECT * FROM subcategorias ORDER BY nombre ASC")
+    return res

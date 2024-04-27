@@ -497,9 +497,82 @@ footer h5 {
   max-width: 40px;
 }
 
+.contenido {
+  margin: auto;
+  max-width: 1196px;
+}
+
+.banner {
+  display: flex;
+  align-items: flex-end;
+}
+.banner img {
+  margin: auto;
+  max-width: 100%;
+}
+.banner h3 {
+  text-transform: uppercase;
+  position: absolute;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+  margin-left: 1rem;
+}
+
+.scat {
+  margin-bottom: 3rem;
+}
+
+.categorias {
+  width: 30%;
+}
+.categorias a {
+  color: black;
+  text-decoration: none;
+}
+
+.cluster {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.productos {
+  display: flexbox;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 70%;
+}
+.productos img {
+  margin: auto;
+  max-width: 10rem;
+}
+.productos p {
+  font-size: 25px;
+  font-weight: 500;
+}
+.productos a {
+  color: black;
+  font-size: larger;
+  text-decoration: none;
+}
+
+.card-producto {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.card-producto .producto-body {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (width <= 1280px) {
   .nav__buscar--logo {
     margin-right: 13%;
+  }
+  .banner h3 {
+    font-size: 20px;
   }
 }
 @media (width < 834px) {
@@ -544,6 +617,13 @@ footer h5 {
   .footer :nth-child(3) {
     border-left: none;
   }
+  .categorias {
+    margin: auto;
+    width: 90%;
+  }
+  .contenido {
+    max-width: 95%;
+  }
 }
 @media (width <= 580px) {
   .login {
@@ -552,6 +632,13 @@ footer h5 {
   }
   .login-content {
     min-width: 100% !important;
+  }
+  .scat {
+    margin-bottom: 2.5rem;
+  }
+  .banner h3 {
+    font-size: 15px;
+    max-width: 50%;
   }
 }
 @media (width < 500px) {

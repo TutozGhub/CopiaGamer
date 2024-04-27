@@ -9,26 +9,26 @@ app = Flask(__name__)
 app.jinja_env.filters["M"] = moneda
 app.jinja_env.filters["Tmax"] = max_len
 
-app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
     res = eventos()
-    productos = ultimos_productos()
-
+    productos = ultimos_productos(10)
     return render_template('index.html', fondo="#fff", images=res, productos=productos)
 
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == "POST":
         res = val_login(request.form)
+
         if res[0]:
             app.logger.debug("Logeado")
             session["id_usuario"] = res[1]
             session["nombre"] = res[2]
             return jsonify({'success' : True, 'message' : ''})
+        
         else:
             app.logger.debug("Error al logear")
             return jsonify({'success': False, 'message': res[1]})
@@ -36,7 +36,7 @@ def login():
 @app.route("/logout", methods=['POST', 'GET'])
 def logout():
     session.clear()
-    return redirect('/')
+    return redirect(url_for('index'))
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -51,16 +51,39 @@ def register():
 def producto():
     if request.method == "POST":
         print("post")
+        return redirect('/')
 
     id = request.args.get("id")
-    producto = consultar_producto(id)
+    producto = consultar_producto_id(id)
     
     if len(producto) == 0:
         return error("Producto inexistente", 404)
-    print(producto)
     return render_template('producto.html', fondo="#fff", producto=producto[0])
 
 
+@app.route('/productos', methods=['POST', 'GET'])
+def productos():
+    categorias = traer_categorias()
+    subcategorias = traer_subcategorias()
+    _scat = request.args.get('subcategoria', -1)
+
+    if not _scat.isdigit():
+        return error("Query invalida", 404)
+
+    if _scat == -1:
+        scat = 'destacados'
+        productos = ultimos_productos(20)
+    else:
+        for sc in subcategorias:
+            if int(_scat) == int(sc['id']):
+                scat = sc['nombre']
+                break;
+        productos = consultar_productos_subcat(int(_scat))
+        if not productos[0]:
+            return error("Categoria invalida", 404)
+        productos = productos[1]
+
+    return render_template('productos.html', scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
 
