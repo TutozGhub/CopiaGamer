@@ -629,7 +629,7 @@ footer h5 {
   }
   .producto-img img {
     margin: auto;
-    width: 50%;
+    width: 60%;
   }
 }
 @media (width <= 820px) {
