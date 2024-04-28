@@ -70,8 +70,18 @@ def eventos():
     res = db.execute("SELECT * FROM eventos")
     return res
 
-def ultimos_productos(limite=20):
-    res = db.execute("SELECT * FROM productos ORDER BY id DESC LIMIT ?", limite)
+def ultimos_productos(limite=20, precio=False, desc=True):
+    if desc:
+        desc = 'DESC'
+    else:
+        desc = 'ASC'
+
+    if precio:
+        precio = 'precio'
+    else:
+        precio = 'id'
+
+    res = db.execute(f"SELECT * FROM productos ORDER BY {precio} {desc} LIMIT ?", limite)
     return res
 
 def consultar_producto_id(id):
@@ -85,12 +95,18 @@ def consultar_producto_id(id):
                     """, id)
     return res
 
-def consultar_productos_subcat(id):
-    res = db.execute("""
-                    SELECT *
-                     FROM productos
-                     WHERE subcategoria=?
-                    """, id)
+def consultar_productos_subcat(id, precio=False, desc=True):
+    if desc:
+        desc = 'DESC'
+    else:
+        desc = 'ASC'
+
+    if precio:
+        precio = 'precio'
+    else:
+        precio = 'id'
+        
+    res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY {precio} {desc}", id)
     return res
 
 

@@ -3,7 +3,7 @@
 {% block main %}
 <div class="contenido mt-3 mb-5">
 <!-- BANNER -->
-    <div class="banner">
+    <div class="banner mb-4">
         <div class="scat">
             <h3>
                 {{ scat }}
@@ -15,7 +15,7 @@
 <!-- CLUSTER -->
     <div class="cluster">
 <!-- CATEGORIAS --> 
-        <div class="accordion accordion-flush categorias mt-4">
+        <div class="accordion accordion-flush categorias">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#categorias" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -52,11 +52,22 @@
                 </div>
             </div>
         </div>
+
 <!-- PRODUCTOS -->
         <div class="productos">
+            <!-- ORDERBY -->
+            <div class="card ms-2 mb-2 p-2 orderby">
+                <select name="orderby" id="orderby">
+                    {% for o in orders %}
+                        <option value="{{ o['value'] }}"{% if o['value'] == orderby %}selected{% endif %}>{{ o['text'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             {% for p in productos %}
-                <div class="card ms-2 mt-4 p-2 card-producto">
-                    <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}">
+                <div class="card ms-2 mb-2 p-2 card-producto">
+                    <a href="/producto?id={{ p['id'] }}">
+                        <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
+                    </a>
                     <div class="card-body producto-body">
                         <a href="/producto?id={{ p['id'] }}">
                             {{ p['nombre'] | Tmax(100) }}
@@ -75,4 +86,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block script_f %}
+    <script src="/static/js/orderby.js"></script>
 {% endblock %}

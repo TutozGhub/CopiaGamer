@@ -9,7 +9,7 @@
     <div class="carousel-inner">
         {% for i in images %}
                 <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ i['imagen'] }}" class="d-block w-100"/>
+                    <img src="{{ i['imagen'] }}" class="d-block w-100" loading="lazy"/>
                 </div>
         {% endfor %}
     </div>
@@ -35,7 +35,7 @@
         {% for p in productos %}
         <div class="card card-ultimos">
             <a href="/producto?id={{ p['id'] }}">
-                <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}">
+                <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
                 <div class="card-body ultimos-body">
                     <small class="card-text">
                         {{ p['nombre'] | Tmax(89) }}

@@ -59,19 +59,36 @@ def producto():
     if len(producto) == 0:
         return error("Producto inexistente", 404)
     return render_template('producto.html', fondo="#fff", producto=producto[0])
-
-
+    
 @app.route('/productos', methods=['POST', 'GET'])
 def productos():
+    orders =[
+        {'value': 'todos', 'text': 'Todos'},
+        {'value': 'mayoramenor', 'text': 'Mayor precio'},
+        {'value': 'menoramayor', 'text': 'Menor precio'}
+    ]
+
     categorias = traer_categorias()
     subcategorias = traer_subcategorias()
     _scat = request.args.get('subcategoria', -1)
+    orderby = request.args.get('orderby', 'todos')
+
     id_scat = None
     id_cat = None
 
     if _scat == -1:
         scat = 'destacados'
-        productos = ultimos_productos(20)
+        if orderby == 'mayoramenor':
+            productos = ultimos_productos(20, 'precio', True)
+            print('if 1')
+        elif orderby == 'menoramayor':
+            productos = ultimos_productos(20, 'precio', False)
+            print('if 2')
+        else:
+            productos = ultimos_productos(20)
+            print('if 3')
+        for p in productos:
+            print(p['id'], p['precio'])
     else:
         found = False
         for sc in subcategorias:
@@ -85,9 +102,14 @@ def productos():
         if not found:
             return error('Categoria inexistente', 404)
 
-        productos = consultar_productos_subcat(int(_scat))
+        if orderby == 'mayoramenor':
+            productos = consultar_productos_subcat(int(_scat), 'precio', True)
+        elif orderby == 'menoramayor':
+            productos = consultar_productos_subcat(int(_scat), 'precio', False)
+        else:
+            productos = consultar_productos_subcat(int(_scat))
 
-    return render_template('productos.html',id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
+    return render_template('productos.html',orderby=orderby, orders=orders, id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
 

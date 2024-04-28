@@ -533,13 +533,14 @@ footer{
     max-width: 70%;
     img{
         margin: auto;
-        max-width: 10rem;
+        width: 10rem;
     }
     p{
         font-size: 25px;
         font-weight: 500;
     }
     a{
+        margin: auto;
         color: black;
         font-size: larger;
         text-decoration: none;
@@ -553,6 +554,17 @@ footer{
         display: flex;
         flex-direction: column;
     }
+}
+.orderby{
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    max-width: 100%;
+}
+#orderby{
+    width: 50%;
+    border: none;
+    border-bottom: solid #{$primario} 1px;
 }
 
 

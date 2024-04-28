@@ -549,13 +549,14 @@ footer h5 {
 }
 .productos img {
   margin: auto;
-  max-width: 10rem;
+  width: 10rem;
 }
 .productos p {
   font-size: 25px;
   font-weight: 500;
 }
 .productos a {
+  margin: auto;
   color: black;
   font-size: larger;
   text-decoration: none;
@@ -569,6 +570,19 @@ footer h5 {
 .card-producto .producto-body {
   display: flex;
   flex-direction: column;
+}
+
+.orderby {
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  max-width: 100%;
+}
+
+#orderby {
+  width: 50%;
+  border: none;
+  border-bottom: solid #fd611a 1px;
 }
 
 @media (width <= 1280px) {
