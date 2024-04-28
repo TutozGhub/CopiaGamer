@@ -490,7 +490,8 @@ footer h5 {
   border: #a7469a solid 1px;
   border-radius: 5px;
   max-width: 260px;
-  max-height: 100px;
+  max-height: 120px;
+  margin: auto 0 auto auto;
 }
 .producto-pagogamer a {
   font-size: 13px;
