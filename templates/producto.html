@@ -29,7 +29,27 @@
                         </p>
                     </div>
                 </div>
-                <img class="producto-pagogamer" src="/static/image/pago gamer.jpg" alt="pago gamer" loading="lazy">
+        <!-- PAGO GAMER -->
+                <div class="container text-center producto-pagogamer">
+                    <div class="grid1-pagogamer">
+                        <div>
+                            <img src="https://compragamer.com.ar/PatchRouterSection/assets/img/pgold.png" alt="">
+                        </div>
+                        <div class="color-pagogamer ld">
+                            <small class="m-0">12 CUOTAS SIN INTERÉS DE</small>
+                            <p>{{ (producto['precio'] / 7.274) | M }}</p>
+                        </div>
+                    </div>
+                    <div class="grid2-pagogamer">
+                        <div>
+                            <a href="">Ver cuotas</a>
+                        </div>
+                        <div>
+                            <small class="m-0">PRECIO DE LISTA</small>
+                            <p>{{ (producto['precio'] * 1.65) | M }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <hr>
             <!-- GARANTIAS -->

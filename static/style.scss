@@ -1,5 +1,7 @@
 $primario: #fd611a;
 $secundario: #f44336;
+$precio: #4675b9;
+$pagogamer: #a7469a;
 $fondo: #eeeeee;
 $verde: #4caf50;
 $blanco: #fff;
@@ -417,13 +419,12 @@ footer{
     font-size: 20px;
     margin-top: auto;
     margin-bottom: 0;
-    color: #4675b9;
 }
 
 // Producto
 
 .precio{
-    color: #4675b9;
+    color: #{$precio};
 }
 
 .producto{
@@ -479,8 +480,45 @@ footer{
 }
 
 .producto-pagogamer{
-    max-width: 264px;
-    max-height: 110px;
+    display: flex;
+    border: #{$pagogamer} solid 1px;
+    border-radius: 5px;
+    max-width: 260px;
+    max-height: 100px;
+    a{
+        font-size: 13px;
+        margin: 0;
+    }
+    small{
+        font-size: 9px;
+        text-wrap: nowrap;
+        font-weight: 800;
+        margin: 0;
+    }
+    p{
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+    }
+    .grid1-pagogamer{
+        margin: auto;
+    }
+    .grid2-pagogamer{
+        margin: auto;
+        small{
+            font-weight: 500;
+        }
+        p{
+            font-size: 17px;
+        }
+    }
+}
+.ld{
+    padding-right: 10px !important;
+    border-right: solid rgba(55, 55, 55, 0.4) 1px;
+}
+.color-pagogamer{
+    color: #{$pagogamer};
 }
 .prodcuto-precio-valor{
     font-size: 1.9em;
