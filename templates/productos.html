@@ -15,7 +15,7 @@
 <!-- CLUSTER -->
     <div class="cluster">
 <!-- CATEGORIAS --> 
-        <div class="accordion accordion-flush categorias">
+        <div class="accordion accordion-flush categorias acordeon-mod">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#categorias" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -28,11 +28,11 @@
                             {% for c in cats %}
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#subcat_{{ c['id'] }}" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        <button class="accordion-button {% if c['id'] != id_cat %} collapsed {% endif %} shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#subcat_{{ c['id'] }}" aria-expanded="false" aria-controls="flush-collapseTwo">
                                             {{ c['nombre'] }}
                                         </button>
                                     </h2>
-                                    <div id="subcat_{{ c['id'] }}" class="accordion-collapse collapse {% if c['id'] == id_cat %} show {% endif %}" data-bs-parent="#subcategorias">
+                                    <div id="subcat_{{ c['id'] }}" class="accordion-collapse collapse {% if c['id'] == id_cat %} show {% endif %} " data-bs-parent="#subcategorias">
                                         {% for sc in subcats %}
                                             {% if c['id'] == sc['id_categoria'] %}
                                             <p class="mt-2 mx-4">
@@ -89,5 +89,5 @@
 {% endblock %}
 
 {% block script_f %}
-    <script src="/static/js/orderby.js"></script>
+    <script src="/static/js/filtros_productos.js"></script>
 {% endblock %}

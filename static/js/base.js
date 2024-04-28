@@ -1,6 +1,13 @@
 $(document).ready(function() {
     error_message('#login-form', '/login', '', '#login-error')
     error_message('#register-form', '/register', '', '#register-error')
+
+    $('#search').keypress(function (e) { 
+    if (e.key == 'Enter'){
+            query = e.target.value;
+            window.location.href = '/productos?search=' + query;
+        }
+    });
 });
 
 function error_message(ID_form, RUTA, RUTA_SALIDA, ID_error){

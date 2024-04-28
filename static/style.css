@@ -535,6 +535,14 @@ footer h5 {
   text-decoration: none;
 }
 
+.acordeon-mod button:not(.colapsed) {
+  color: black;
+  background-color: #fff;
+}
+.acordeon-mod button::after {
+  transition: 300ms;
+}
+
 .cluster {
   display: flex;
   flex-direction: row;
@@ -546,6 +554,7 @@ footer h5 {
   width: -moz-fit-content;
   width: fit-content;
   max-width: 70%;
+  width: 100%;
 }
 .productos img {
   margin: auto;
@@ -563,9 +572,9 @@ footer h5 {
 }
 
 .card-producto {
-  max-width: 100%;
   display: flex;
   flex-direction: row;
+  max-width: 100%;
 }
 .card-producto .producto-body {
   display: flex;

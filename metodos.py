@@ -95,6 +95,30 @@ def consultar_producto_id(id):
                     """, id)
     return res
 
+def buscar_producto(query, precio=False, desc=True ):
+    q = f"%{query}%";
+
+    if desc:
+        desc = 'DESC';
+    else:
+        desc = 'ASC';
+
+    if precio:
+        precio = 'p.precio';
+    else:
+        precio = 'p.id';
+
+    res = db.execute(f"""
+                    SELECT p.id, p.nombre, precio, imagen
+                     FROM productos AS p
+                     JOIN subcategorias AS sc ON p.subcategoria = sc.id
+                     JOIN categorias AS c ON c.id = sc.id_categoria
+                     JOIN marcas AS m ON m.id = p.id_marca
+                     WHERE p.nombre LIKE ? OR sc.nombre LIKE ? OR c.nombre LIKE ? OR m.nombre LIKE ?
+                     ORDER BY {precio} {desc}
+                    """, q, q, q, q)
+    return res
+
 def consultar_productos_subcat(id, precio=False, desc=True):
     if desc:
         desc = 'DESC'
@@ -147,4 +171,33 @@ def traer_categorias():
 
 def traer_subcategorias():
     res = db.execute("SELECT * FROM subcategorias ORDER BY nombre ASC")
+    return res
+
+def orderby_ultimos(orderby, limit=20):
+    if orderby == 'mayoramenor':
+        res = ultimos_productos(limit, True, True)
+    elif orderby == 'menoramayor':
+        res = ultimos_productos(limit, True, False)
+    else:
+        res = ultimos_productos(limit)
+        
+    return res
+
+def orderby_cat(id, orderby):
+    if orderby == 'mayoramenor':
+        res = consultar_productos_subcat(id, True, True)
+    elif orderby == 'menoramayor':
+        res = consultar_productos_subcat(id, True, False)
+    else:
+        res = consultar_productos_subcat(id)
+        
+    return res
+def orderby_query(query, orderby):
+    if orderby == 'mayoramenor':
+        res = buscar_producto(query, True, True)
+    elif orderby == 'menoramayor':
+        res = buscar_producto(query, True, False)
+    else:
+        res = buscar_producto(query)
+        
     return res

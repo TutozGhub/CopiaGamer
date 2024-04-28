@@ -522,6 +522,17 @@ footer{
         text-decoration: none;
     }
 }
+
+.acordeon-mod{
+    button:not(.colapsed){
+        color: black;
+        background-color: #{$blanco};
+    }
+    button::after{
+        transition: 300ms;
+    }
+}
+
 .cluster{
     display: flex;
     flex-direction: row;
@@ -531,6 +542,7 @@ footer{
     display: flexbox;
     width: fit-content;
     max-width: 70%;
+    width: 100%;
     img{
         margin: auto;
         width: 10rem;
@@ -547,9 +559,9 @@ footer{
     }
 }
 .card-producto{
-    max-width: 100%;
     display: flex;
     flex-direction: row;
+    max-width: 100%;
     .producto-body{
         display: flex;
         flex-direction: column;

@@ -12,16 +12,18 @@
         {% block head %}{% endblock %}
         {% block script_h %}{% endblock %}
     </head>
-    <body {% if fondo %}
-        style="--fondo: {{fondo}} !important;"
-    {% endif %}>
+    <body   {% if fondo %}
+                style="--fondo: {{fondo}} !important;"
+            {% endif %}>
+<!-- HEADER -->
         <header>
             <nav class="nav">
+            <!-- LOGO -->
                 <div class="nav nav__logo">
                     <a href="/">
                         <img src="/static/image/copiagamer.png" alt="compra gamer" loading="lazy"></a>
                 </div>
-
+            <!-- SEARCH -->
                 <div class="nav nav__buscar">
                     <div class="form-floating mb-3 buscar">
                         <input id="search" class="form-control nav__buscar--buscar shadow-off" type="text" placeholder="Buscar productos">
@@ -31,6 +33,7 @@
                         <img class="nav__buscar--logo" src="https://cdn.icon-icons.com/icons2/1129/PNG/512/searchmagnifierinterfacesymbol1_79893.png" alt="buscar">
                     </div>
                 </div>
+            <!-- USUARIO -->
                 <div class="nav nav__usuario">
                     {% if session["id_usuario"] %}
                         <li class="nav-item dropdown">
@@ -50,12 +53,14 @@
                             </span>
                         </button>
                     {% endif %}
+                <!-- CARRO -->
                     <div class="nav__usuario--carrito">
                         <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-shopping-cart_90604.png" alt="Carrito" loading="lazy">
                         <div class="nav__usuario--contador">0</div>
                     </div>
                 </div>
             </nav>
+<!-- MENU -->
             <div class="menu">
                 <div>
                     <a href="/productos">
@@ -80,6 +85,7 @@
             </div>
         </header>
         <main>
+<!-- LOGIN -->
             {% if not session["id_usuario"] %}
             <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div id="login-error" class="error-form"></div>
@@ -101,6 +107,7 @@
                                     <label class="label-animated" for="password">Contraseña</label>
                                 </div>
                                 <br>
+                            <!-- BTN -->
                                 <div class="login-footer">
                                     <button type="submit" class="btn btn-bd-primary">CONTINUAR</button>
                                     <button type="button" class="btn btn-crear-cuenta" data-bs-target="#register" data-bs-toggle="modal">CREAR CUENTA</button>
@@ -114,6 +121,7 @@
                     </div>
                 </div>
             </div>
+<!-- REGISTER -->
             <div class="modal fade" id="register" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div id="register-error" class="error-form"></div>
                 <div class="modal-dialog modal-dialog-centered login">
@@ -156,6 +164,7 @@
                                     <label class="label-animated" for="password">Repetir contraseña</label>
                                 </div>
                                 <br>
+                            <!-- BTN -->
                                 <div class="login-footer">
                                     <button type="submit" class="btn btn-bd-primary">REGISTRARME</button>
                                     <br>
@@ -173,7 +182,7 @@
 
             {% endblock %}
         </main>
-        
+<!-- SPONSORS -->
         <div class="sponsors">
             <div>
                 <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_316_9_591.png" class="d-block w-100" loading="lazy">
@@ -185,16 +194,20 @@
                 <img class="sponsor" src="https://imagenes.compragamer.com/marcas/imagen_marca_320_9_411.jpg" class="d-block w-100" loading="lazy">
             </div>
         </div>
+<!-- FOOTER -->
         <footer>
             <div class="footer">
+            <!-- FOOT 1 -->
                 <div class="foot foot__1">
                     <img class="foot__1--img foot--img" src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="data fiscal" loading="lazy">
                 </div>
+            <!-- FOOT 2 -->
                 <div class="foot foot__2">
                     <a href="/ayuda"><button type="button" class="btn btn-primary foot__2--btn1">Ayuda</button></a>
                     <a href="/"><button type="button" class="btn btn-primary foot__2--btn2">Botón de arrepentimiento</button></a>
                     <a href="/">Términos y condiciones</a>
                 </div>
+            <!-- FOOT 3 -->
                 <div class="foot foot__3">
                     <h5>Seguinos en</h5>
                     <div class="foot__redes">
@@ -208,6 +221,7 @@
                             </div></a>
                     </div>
                 </div>
+            <!-- FOOT 4 -->
                 <div class="foot foot__4">
                     <img class="foot__4--img foot--img" src="https://compragamer.com.ar/PatchRouterSection/assets/icons/gptw.svg" alt="certificado" loading="lazy">
                     <a href="/">¡Trabajá con nosotros!</a>
@@ -215,7 +229,7 @@
             </div>
         </footer>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="/static/js/login.js"></script>
+        <script src="/static/js/base.js"></script>
         {% block script_f %} 
             
         {% endblock %} 
