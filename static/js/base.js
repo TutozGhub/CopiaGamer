@@ -3,7 +3,7 @@ $(document).ready(function() {
     error_message('#register-form', '/register', '', '#register-error')
 
     $('#search').keypress(function (e) { 
-    if (e.key == 'Enter'){
+    if (e.keyCode == 13){
             query = e.target.value;
             window.location.href = '/productos?search=' + query;
         }
