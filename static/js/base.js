@@ -2,13 +2,19 @@ $(document).ready(function() {
     error_message('#login-form', '/login', '', '#login-error')
     error_message('#register-form', '/register', '', '#register-error')
 
-    $('#search').keypress(function (e) { 
-        alert(e.keyCode, e.key)
+    $('#search').keypress(function (e) {
     if (e.keyCode == 13){
             query = e.target.value;
             window.location.href = '/productos?search=' + query;
         }
     });
+    $('#search').focus(function (e) { 
+        $('#buscar-img').removeClass('nav__buscar--logo');
+    });
+    $('#search').focusout(function (e) { 
+        $('#buscar-img').addClass('nav__buscar--logo');
+    });
+    
 });
 
 function error_message(ID_form, RUTA, RUTA_SALIDA, ID_error){

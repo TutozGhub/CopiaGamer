@@ -32,12 +32,13 @@ body {
 }
 
 .buscar {
+  display: flex;
   margin-top: 5px;
   margin-bottom: 1px !important;
 }
 
 .nav__buscar--buscar {
-  width: 90% !important;
+  width: 100% !important;
   height: 3.5rem;
 }
 
@@ -47,11 +48,15 @@ body {
 }
 
 .nav__buscar--logo {
-  vertical-align: middle;
   position: absolute;
-  margin-top: 3px;
-  margin-right: 10%;
-  max-width: 20px;
+  pointer-events: none;
+  background-image: url("https://cdn.icon-icons.com/icons2/1129/PNG/512/searchmagnifierinterfacesymbol1_79893.png");
+  z-index: 5;
+  background-size: 20px;
+  width: 95%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 .btn-bd-primary {
