@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="producto">
+<div class="producto m-3">
     <div class="producto-div producto-img">
         <img src="{{ producto['imagen'] }}" alt="foto" loading="lazy">
     </div>
-    <div class="producto-div producto-info">
+    <div class="producto-info">
         <h4>{{ producto['nombre'] }}</h4>
         <small><small>{{ producto['categoria'] }} > {{ producto['subcategoria'] }} > {{ producto['marca'] }}</small></small>
         <hr>

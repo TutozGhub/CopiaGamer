@@ -602,12 +602,19 @@ footer h5 {
     font-size: 20px;
   }
 }
-@media (width < 834px) {
+@media (width < 920px) {
   .producto {
     flex-direction: column;
   }
+  .producto .producto-div-btn {
+    display: flex;
+  }
+  .producto .producto-div-btn button {
+    margin: auto;
+    width: 90%;
+  }
   .producto-info {
-    margin-top: 2rem;
+    margin: 1rem auto;
     flex-basis: 70%;
   }
   .producto-div-precio {
@@ -622,13 +629,7 @@ footer h5 {
   }
   .producto-img img {
     margin: auto;
-    width: 90%;
-  }
-  .producto-div-btn {
-    display: flex;
-  }
-  .producto-div-btn button {
-    width: 90%;
+    width: 50%;
   }
 }
 @media (width <= 820px) {
@@ -651,8 +652,41 @@ footer h5 {
   .contenido {
     max-width: 95%;
   }
+  .cluster {
+    justify-content: center;
+  }
+  .productos {
+    max-width: 90%;
+    width: 100%;
+    text-align: center;
+  }
+  .productos img {
+    width: 10rem;
+  }
+  .card-producto {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .card-producto .producto-body {
+    align-content: center;
+  }
+  .card-producto .producto-body button {
+    margin: auto;
+  }
+  .orderby {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+  #orderby {
+    width: 80%;
+  }
 }
 @media (width <= 580px) {
+  .producto-img img {
+    width: 90%;
+  }
   .login {
     margin-left: 0px !important;
     margin-right: 0px !important;
