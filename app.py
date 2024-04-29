@@ -62,8 +62,9 @@ def producto():
     producto = producto[0]
 
     imagenes = []
+    dir_imagenes = producto['imagen']
     for i in range(1, int(producto['cantidad_imagenes']) + 1):
-        imagenes.append(f'{producto['imagen']}{i}.png')
+        imagenes.append(f'{dir_imagenes}{i}.png')
 
     return render_template('producto.html', fondo="#fff", producto=producto, imgs=imagenes)
     
