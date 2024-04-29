@@ -408,6 +408,12 @@ footer{
         margin: 1rem auto;
         max-width: 10rem;
     }
+    a{
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        height: 100%;
+    }
 }
 .ultimos-body{
     small{
@@ -415,10 +421,7 @@ footer{
     }
 }
 .ultimo-precio{
-    padding: 1rem 0;
     font-size: 20px;
-    margin-top: auto;
-    margin-bottom: 0;
 }
 
 // Producto
