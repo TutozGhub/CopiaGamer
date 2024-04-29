@@ -727,6 +727,7 @@ footer h5 {
     border-top: none;
   }
   .footer {
+    overflow-x: hidden;
     grid-template-columns: 1fr 1fr;
   }
   .footer :nth-child(3) {

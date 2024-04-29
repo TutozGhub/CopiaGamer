@@ -63,6 +63,7 @@ def producto():
 
     imagenes = []
     dir_imagenes = producto['imagen']
+    
     for i in range(1, int(producto['cantidad_imagenes']) + 1):
         imagenes.append(f'{dir_imagenes}{i}.png')
 

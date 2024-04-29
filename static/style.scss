@@ -717,6 +717,7 @@ footer{
         border-top: none;
     }
     .footer{
+        overflow-x: hidden;
         grid-template-columns: 1fr 1fr;
         :nth-child(3){
             border-left: none;
