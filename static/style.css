@@ -722,12 +722,12 @@ footer h5 {
 @media (width <= 820px) {
   .foot {
     border-top: 1px groove #fea77f;
+    padding: 10px;
   }
   .foot:nth-child(1), .foot:nth-child(2) {
     border-top: none;
   }
   .footer {
-    overflow-x: hidden;
     grid-template-columns: 1fr 1fr;
   }
   .footer :nth-child(3) {

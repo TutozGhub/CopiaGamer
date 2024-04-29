@@ -712,12 +712,12 @@ footer{
 @media (width <= 820px){
     .foot{
         border-top: 1px groove #{lighten($primario, 20%)};
+        padding: 10px;
     }
     .foot:nth-child(1), .foot:nth-child(2){
         border-top: none;
     }
     .footer{
-        overflow-x: hidden;
         grid-template-columns: 1fr 1fr;
         :nth-child(3){
             border-left: none;
