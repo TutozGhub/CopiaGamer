@@ -36,7 +36,7 @@
         {% for p in productos %}
         <div class="card card-ultimos">
             <a href="/producto?id={{ p['id'] }}">
-                <img src="{{ p['imagen'] }}" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
+                <img src="{{ p['imagen'] }}1.png" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
                 <div class="card-body ultimos-body">
                     <small class="card-text">
                         {{ p['nombre'] | Tmax(89) }}

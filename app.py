@@ -58,7 +58,14 @@ def producto():
     
     if len(producto) == 0:
         return error("Producto inexistente", 404)
-    return render_template('producto.html', fondo="#fff", producto=producto[0])
+    
+    producto = producto[0]
+
+    imagenes = []
+    for i in range(1, int(producto['cantidad_imagenes']) + 1):
+        imagenes.append(f'{producto['imagen']}{i}.png')
+
+    return render_template('producto.html', fondo="#fff", producto=producto, imgs=imagenes)
     
 @app.route('/productos', methods=['POST', 'GET'])
 def productos():

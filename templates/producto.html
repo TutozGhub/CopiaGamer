@@ -5,7 +5,15 @@
     <div class="producto">
     <!-- FOTO -->
         <div class="producto-div producto-img">
-            <img src="{{ producto['imagen'] }}" alt="foto" loading="lazy">
+            <img id="expositor" src="{{ imgs[0] }}" alt="foto" loading="lazy">
+            <div>
+                <p class="fotos-count"><span>{{ producto['cantidad_imagenes'] }} fotos</span></p>
+            </div>
+            <div class="miniaturas-div">
+                {% for i in imgs %}
+                    <img id="miniatura_{{ loop.index }}" class="miniatura_ajax p-1 {% if loop.index == 1 %}miniatura-select{% endif %}" src="{{ i }}" alt="foto" loading="lazy">
+                {% endfor %}
+            </div>
         </div>
     <!-- INFO -->
         <div class="producto-info">
@@ -85,4 +93,8 @@
         
     </div>
 </div>
+{% endblock %}
+
+{% block script_f %}
+    <script src="/static/js/producto.js"></script>
 {% endblock %}
