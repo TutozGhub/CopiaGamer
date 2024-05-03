@@ -14,7 +14,16 @@ $(document).ready(function() {
     $('#search').focusout(function (e) { 
         $('#buscar-img').addClass('nav__buscar--logo');
     });
-    
+    $('.sumar-carro-ajax').click(function (e) { 
+        e.preventDefault();
+        window.location.href = `/add?id=${e.target.value}&url=${e.target.baseURI}`
+    })
+
+    $('#comprar').click(function (e) { 
+        e.preventDefault();
+        alert('¡¡Productos comprados!!')
+        window.location.href = `/comprar`
+    });
 });
 
 function error_message(ID_form, RUTA, RUTA_SALIDA, ID_error){

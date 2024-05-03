@@ -74,10 +74,8 @@
                         </a>
                         <p class="precio mt-2">{{ p['precio'] | M }}</p>
                         <form action="/producto" method="POST" class="producto-div-btn">
-                            <button id="sumar-carro" class="btn btn-bd-primary nav__usuario--btn" type="submit">
-                                <span>
+                            <button value="{{ p['id'] }}" class="btn btn-bd-primary nav__usuario--btn sumar-carro-ajax" type="submit">
                                     SUMAR AL CARRITO
-                                </span>
                             </button>
                         </form>
                     </div>

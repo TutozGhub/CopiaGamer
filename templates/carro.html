@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="m-2 p-2" style="min-height: 70vh;">
+    <h4>Carrito de compras</h4>
+    {% if productos %}
+        {% for p in productos %}
+
+            <div class="card ms-2 mb-2 p-2 card-carro">
+                <a class="my-auto" href="/producto?id={{ p['id'] }}">
+                    <img src="{{ p['imagen'] }}1.png" class="card-img-top img-carro" alt="{{ p['nombre'] }}" loading="lazy">
+                </a>
+                <div class="card-body body-carro">
+                    <a href="/producto?id={{ p['id'] }}">
+                        {{ p['nombre'] }}
+                    </a>
+                </div>
+                <input id="cantidad-{{ p['id'] }}" class="text-center input-cantidad-ajax" type="text" value="x{{ p['cantidad'] }}" readonly>
+                <h5 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ (p['precio'] * p['cantidad']) | M }}</h5>
+                <div class="div-borrar-carro">
+                    <a href="/delete?id={{ p['id'] }}" class="btn-borrar-carro">
+                        <img src="https://cdn.icon-icons.com/icons2/931/PNG/512/delete_remove_bin_icon-icons.com_72400.png" alt="eliminar">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="card ms-2 mb-2 p-2 card-carro card-carro-total">
+                <img src="https://compragamer.com.ar/PatchRouterSection/assets/img/pgold.png" class="card-img-top img-carro" alt="Pago gamer" loading="lazy">
+                <div class="card-body body-carro">
+                    <div class="form-check">
+                        <input class="form-check-input radio-pago shadow-off" type="radio" name="pago" id="banco" value="option1" checked>
+                        <label class="form-check-label" for="banco">
+                            Depósito o Transferencia Bancaria
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input radio-pago shadow-off" type="radio" name="pago" id="mercadopago" value="option2">
+                        <label class="form-check-label" for="mercadopago">
+                            Mercadopago - Tarjetas Online, PagoFacil, RapiPago
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input radio-pago shadow-off" type="radio" name="pago" id="op_pagogamer" value="option3">
+                        <label class="form-check-label" for="op_pagogamer">
+                            Pago Gamer - Tarjetas de crédito ¡Hasta 12 cuotas!
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">Total:</h4>
+                    <h4 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ total | M }}</h4>
+                </div>
+            </div>
+                {% if session["id_usuario"] %}
+                <div class="btn-carro">
+                    <button id="comprar" class="btn btn-bd-primary nav__usuario--btn m-0 ms-auto">
+                            COMPRAR
+                    </button>
+                </div>
+                {% else %}
+                <div class="btn-carro">
+                    <button class="btn btn-bd-primary nav__usuario--btn m-0 ms-auto" data-bs-toggle="modal" data-bs-target="#login" >
+                            COMPRAR
+                    </button>
+                </div>
+                {% endif %}
+        {% else %}
+        <p class="text-center">No hay elementos en el carrito</p>
+        <div class="btn-carro">
+            <a href="/productos" class="m-0 mx-auto">
+                <button class="btn btn-bd-primary nav__usuario--btn" type="button" style="width: 15rem;">
+                    SEGUIR COMPRANDO
+                </button>
+            </a>
+        </div>
+        {% endif %}
+</div>
+{% endblock %}

@@ -78,10 +78,8 @@
             <hr>
             <!-- BTN -->
             <form action="/producto" method="POST" class="producto-div-btn">
-                <button id="sumar-carro" class="btn btn-bd-primary nav__usuario--btn" type="submit">
-                    <span>
+                <button value="{{ producto['id'] }}" class="btn btn-bd-primary nav__usuario--btn sumar-carro-ajax" type="submit">
                         SUMAR AL CARRITO
-                    </span>
                 </button>
             </form>
             

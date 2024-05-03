@@ -49,10 +49,6 @@ def register():
         
 @app.route('/producto', methods=['POST', 'GET'])
 def producto():
-    if request.method == "POST":
-        print("post")
-        return redirect('/')
-
     id = request.args.get("id")
     producto = consultar_producto_id(id)
     
@@ -111,11 +107,82 @@ def productos():
     return render_template('productos.html',orderby=orderby, orders=orders, id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
+@app.route('/carro', methods=['POST', 'GET'])
+def carro():
+    productos = session.get('productos_carro', False)
+    total = 0
+    for p in productos:
+        total += p['precio'] * p['cantidad']
 
+    return render_template('carro.html', productos=productos, total=total)
+
+@app.route('/add', methods=['GET'])
+def add_carro():
+    id = request.args.get('id', False)
+    url = request.args.get('url', False)
+    if not id or not url:
+        return redirect('/')
+    
+    productos = session.get('productos_carro', [])
+    found = False
+    for p in productos:
+        if str(p['id']) == str(id):
+            p['cantidad'] += 1
+            found = True
+            break
+    if not found and len(consultar_producto_id(id)) == 1:
+        producto = consultar_producto_id(id)[0]
+        producto = {
+            'id': producto['id'],
+            'nombre': producto['nombre'],
+            'precio': int(producto['precio']),
+            'imagen': producto['imagen'],
+            'cantidad': 1
+        }
+        productos.append(producto)
+    
+    session['productos_carro'] = productos
+
+    if not session.get('productos_carro_count', False):
+        session['productos_carro_count'] = 1
+    else:
+        session['productos_carro_count'] += 1
+    
+
+    return redirect(url)
+
+@app.route('/delete', methods=['GET'])
+def delete_carro():
+    id = request.args.get('id', False)
+    if not id:
+        return redirect('/')
+    
+    productos = session.get('productos_carro', [])
+    carro_count = session.get('productos_carro_count', 0)
+    print('p:',len(productos))
+
+    for i in range(len(productos)):
+        if str(productos[i]['id'] ) == str(id):
+            carro_count -= int(productos[i]['cantidad'])
+            productos.pop(i)
+            break
+    print('c:', productos)
+    
+    session['productos_carro'] = productos
+    session['productos_carro_count'] = carro_count
+
+    return redirect('/carro')
+
+@app.route('/comprar', methods=['POST', 'GET'])
+def comprar():
+    session['productos_carro'] = []
+    session['productos_carro_count'] = 0
+    return redirect('/')
 
 
 # CARGA -----------------------------------
 if app.debug:
+
     @app.route('/cargar', methods=['POST', 'GET'])
     def carga():
         if request.method == "POST":
