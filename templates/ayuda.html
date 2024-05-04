@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="contenido mt-3 mb-5">
+    <h4 class="mt-4">Preguntas Frecuentes</h4>
+    <div class="accordion mt-4" id="faqs">
+        {% for f in faqs %}
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#faq{{ f['id'] }}" aria-expanded="false" aria-controls="faq{{ f['id'] }}">
+                    {{ f['titulo'] }}
+                </button>
+            </h2>
+                <div id="faq{{ f['id'] }}" class="accordion-collapse collapse" data-bs-parent="#faqs">
+                    <div class="accordion-body">
+                        <br>
+                        <p class="principal"><strong>{{ f['pregunta'] }}</strong></p>
+                        <p><small>
+                            {{ f['respuesta'] }}
+                        </small></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="mt-4 servicio-postventa">
+        <h5><strong>Servicio postventa y garantías</strong></h5>
+        
+        <p>Para realizar consultas/reclamos relacionadas con la garantía o devolución de alguna de tus compras, debajo de esta sección contamos con el apartado <strong>"Compra Gamer te ayuda. ¿Cuál es tu consulta?"</strong> donde debes exponer tu caso, seleccionando el motivo de <strong>"Postventa"</strong> que se adapte a tu requerimiento y uno de nuestros representantes te ofrecerá la información correspondiente sobre cómo proceder.</p>
+        <p>Para saber si tu producto califica, te aconsejamos revisar los <a class="principal" href="">términos y condiciones de garantía.</a></p>
+        <p>También podes sacar un turno para venir en forma presencial a gestionar tu garantía:</p>
+        <button class="btn btn-bd-primary"><small>TURNOS POSTVENTA/GARANTÍAS</small></button>
+    </div>
+</div>
+{% endblock %}

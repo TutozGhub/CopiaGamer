@@ -22,6 +22,7 @@
             <small><small>{{ producto['categoria'] }} > {{ producto['subcategoria'] }} > {{ producto['marca'] }}</small></small>
             <hr>
         <!-- ID -->
+            <button type="button" class="btn producto-id"><small><small>SKU: BX8071514400F</small></small></button>
             <button type="button" class="btn producto-id"><small><small>ID: {{ producto['id'] }}</small></small></button>
             <hr>
             
@@ -84,11 +85,67 @@
             </form>
             
         </div>
-        
-    <!-- ESPECIFICACIONES -->
     </div>
-    <div>
-        
+    <div class="container">
+    <!-- BOTONES DE FORMULARIO -->
+        <button id="btn-especificaciones" class="text-uppercase btn-menu-producto">especificaciones</button>
+        <button id="btn-preguntas" class="text-uppercase btn-menu-producto">preguntas</button>
+
+    <!-- ESPECIFICACIONES -->
+        <div id="especificaciones" class="row row-cols-2 producto-ajax">
+            {% for e in especificaciones %}
+                <div class="col mt-4">
+                    <h6 class="text-uppercase caracteristicas">{{ e }}</h6>
+                    <table class="table table-striped ">
+                        {% for i in especificaciones[e] %}
+                            <tr>
+                                <td class="fw-bold p-0 px-1"><small>{{i}}</small></td>
+                                <td class="text-end p-0 px-1"><small>{{especificaciones[e][i]}}</small></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    <!-- PREGUNTAS -->
+        <div id="preguntas"class="producto-ajax mt-4">
+            <div>
+                <h5><strong>¿Tenés preguntas sobre el producto?</strong></h5>
+                {% if session['id_usuario'] %}
+                    <p><small>Escribí tu pregunta</small></p>
+                    <textarea class="form-control shadow-off" id="pregunta" rows="3"></textarea>
+                    <div class="d-flex">
+                    <button id="preguntar" class="btn btn-primary btn-bd-primary text-uppercase ms-auto mt-3">
+                        <small class="px-4">Enviar consulta</small>
+                    </button>
+                    </div>
+                {% else %}
+                    <p><small>Iniciá sesión en tu cuenta para poder hacer una pregunta</small></p>
+                    <button class="btn btn-primary btn-bd-primary nav__usuario--btn" type="button" data-bs-toggle="modal" data-bs-target="#login" >
+                        <span>
+                            <img class="nav__usuario--logo" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" loading="lazy">
+                            Iniciar Sesión
+                        </span>
+                    </button>
+                {% endif %}
+            </div>
+            <div class="my-3">
+                {% if preguntas %}
+                    <h5 class="principal">Otros usuarios consultaron</h6>
+                {% endif %}
+                {% for p in preguntas %}
+                    <div class="pregunta mt-2">
+                        <div>
+                            <img class="pregunta-img" src="https://cdn.icon-icons.com/icons2/933/PNG/512/round-account-button-with-user-inside_icon-icons.com_72596.png" loading="lazy">
+                        </div>
+                        <div class="pregunta-body">
+                            <p class="text-start"><small>{{ p['pregunta'] }}</small></p>
+                            <p class="text-end m-1">{{ p['fecha'] }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

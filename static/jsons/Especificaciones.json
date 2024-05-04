@@ -1,0 +1,20 @@
+{
+    "caracteristicas generales":{
+        "Modelo": "14400F",
+        "Socket": "1700 Raptor Lake",
+        "Núcleos": "10",
+        "Frecuencia": "2500.00 mhz",
+        "Proceso De Fabricación": "10 nm",
+        "Hilos": "16",
+        "Frecuencia Turbo": "4700 mhz",
+        "Familia": "Intel Core i5"
+    },
+    "coolers y disipadores":{
+        "Tdp": "65 W",
+        "Incluye cooler CPU": "Si"
+    }
+    ,
+    "memoria":{
+        "L2": "9.5 mb"
+    }
+}

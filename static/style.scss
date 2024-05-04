@@ -718,6 +718,44 @@ footer{
     background-image: url('/static/image/rdbActive.png') !important;
 }
 
+.servicio-postventa{
+    padding: 1rem;
+    background-color: #{$blanco};
+    border: 1px solid #dee2e6 ;
+    border-radius: 5px;
+}
+.caracteristicas{
+    padding: 5px;
+    border-bottom: 1px solid #{$primario};
+}
+.pregunta{
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 1rem 0 1rem;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+}
+.pregunta-img{
+    margin: auto 1rem;
+    max-width: 20px;
+}
+.pregunta-body{
+    width: 100%;
+    padding: 1rem 1rem 0 1rem;
+}
+.btn-menu-producto{
+    padding: 1rem 2rem;
+    background-color: #{$blanco};
+    border: none;
+    border-bottom: solid 1px #dee2e6;
+}
+.btn-menu-producto:active{
+    background-color: #dee2e6;
+}
+.btn-menu-producto-selected{
+    border-bottom: solid 2px #{$primario} !important;
+}
+
 // @media querys
 
 @media(width <= 1280px){

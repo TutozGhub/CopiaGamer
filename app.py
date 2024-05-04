@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, jsonify, url_for
 from flask_session import Session
+from json import load
 
 from metodos import *
 
@@ -63,8 +64,24 @@ def producto():
     for i in range(1, int(producto['cantidad_imagenes']) + 1):
         imagenes.append(f'{dir_imagenes}{i}.png')
 
-    return render_template('producto.html', fondo="#fff", producto=producto, imgs=imagenes)
+    especificaciones = load(open('static\jsons\Especificaciones.json',encoding="utf8"))
+    preguntas = consultar_preguntas(id)
+
+    return render_template('producto.html', fondo="#fff", producto=producto, imgs=imagenes, especificaciones=especificaciones, preguntas=preguntas)
+
+@app.route('/preguntar', methods=['POST', 'GET'])
+def preguntar():
+    id = request.args.get("id_producto", False)
+    pregunta = request.args.get("pregunta", False)
+    url = request.args.get("url", '/')
+    print(id)
+
+    if not id or not pregunta:
+        return error("Error al enviar pregunta")
     
+    insertar_pregunta(pregunta, id)
+    return redirect(url)
+
 @app.route('/productos', methods=['POST', 'GET'])
 def productos():
     categorias = traer_categorias()
@@ -178,6 +195,11 @@ def comprar():
     session['productos_carro'] = []
     session['productos_carro_count'] = 0
     return redirect('/')
+
+@app.route('/ayuda', methods=['GET'])
+def ayuda():
+    faqs = consultar_faqs()
+    return render_template('ayuda.html', faqs=faqs)
 
 
 # CARGA -----------------------------------

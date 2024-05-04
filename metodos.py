@@ -133,6 +133,17 @@ def consultar_productos_subcat(id, precio=False, desc=True):
     res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY {precio} {desc}", id)
     return res
 
+def consultar_faqs():
+    res = db.execute(f"SELECT * FROM faqs")
+    return res
+
+def consultar_preguntas(id_producto):
+    res = db.execute(f"SELECT * FROM preguntas WHERE id_producto=? ORDER BY id desc", id_producto)
+    return res
+
+def insertar_pregunta(pregunta, id_producto):
+    db.execute(f"INSERT INTO preguntas(pregunta, id_producto) VALUES(?,?)", pregunta, id_producto)
+
 
 
 # CARGA
