@@ -120,7 +120,6 @@ def productos():
     else:
         productos = orderby_query(search, orderby)
 
-
     return render_template('productos.html',orderby=orderby, orders=orders, id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
