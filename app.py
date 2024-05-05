@@ -127,8 +127,10 @@ def productos():
 def carro():
     productos = session.get('productos_carro', False)
     total = 0
-    for p in productos:
-        total += p['precio'] * p['cantidad']
+    
+    if productos:
+        for p in productos:
+            total += p['precio'] * p['cantidad']
 
     return render_template('carro.html', productos=productos, total=total)
 
