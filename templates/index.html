@@ -2,6 +2,7 @@
 
 {% block script_h %}
 <!-- <script src="/static/js/aviso.js"></script> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 {% endblock %}
 
 {% block main %}
@@ -29,12 +30,12 @@
     </div>
 </div>
 <!-- PRODUCTOS -->
-<div style="margin: 3rem;">
+<div class="swiper mySwiper m-5"
     <p><strong>ÚLTIMAS NOVEDADES</strong></p>
     <hr>
-    <div class="novedades">
+    <div class="swiper-wrapper novedades">
         {% for p in productos %}
-        <div class="card card-ultimos">
+        <div class="card swiper-slide card-ultimos">
             <a href="/producto?id={{ p['id'] }}">
                 <img src="{{ p['imagen'] }}1.png" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
                 <div class="card-body ultimos-body">
@@ -42,10 +43,28 @@
                         {{ p['nombre'] | Tmax(89) }}
                     </small>
                 </div>
-                <p class="ultimo-precio precio">{{ p['precio'] | M }}</p>
+                <p class="ultimo-precio precio m-0 mt-auto mb-2">{{ p['precio'] | M }}</p>
             </a>
         </div>
         {% endfor %}
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
+{% endblock %}
+
+{% block script_f %}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 'auto',
+        spaceBetween: 25,
+        centerSlide: 'true',
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+    </script>
 {% endblock %}

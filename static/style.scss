@@ -386,8 +386,8 @@ footer{
 .novedades{
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
     user-select: none;
+    max-width: 1200px;
     a{
         color: black;
         text-decoration: none;
@@ -398,9 +398,10 @@ footer{
     flex-direction: column;
     justify-items: center;
     align-content: space-evenly;
-    margin: 0.7rem;
     min-width: 20rem;
-    max-width: 25rem;
+    max-width: 100%;
+    width: 20rem !important;
+    height: 20rem !important;
     text-align: center;
     border-color: rgb(240, 240, 240);
     border-bottom-color: gray;
@@ -411,8 +412,7 @@ footer{
     a{
         display: flex;
         flex-direction: column;
-        align-content: space-between;
-        height: 100%;
+        min-height: 100%;
     }
 }
 .ultimos-body{
