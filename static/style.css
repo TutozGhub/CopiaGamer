@@ -783,6 +783,10 @@ footer h5 {
   border-bottom: solid 2px #fd611a !important;
 }
 
+.marcas-fondo:hover {
+  background-color: #fff !important;
+}
+
 @media (width <= 1280px) {
   .nav__buscar--logo {
     margin-right: 13%;

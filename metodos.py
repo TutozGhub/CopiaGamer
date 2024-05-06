@@ -70,7 +70,7 @@ def eventos():
     res = db.execute("SELECT * FROM eventos")
     return res
 
-def ultimos_productos(limite=20, precio=False, desc=True):
+def ultimos_productos(limite=20, precio=False, desc=True, marca=-1):
     if desc:
         desc = 'DESC'
     else:
@@ -81,7 +81,11 @@ def ultimos_productos(limite=20, precio=False, desc=True):
     else:
         precio = 'id'
 
-    res = db.execute(f"SELECT * FROM productos ORDER BY {precio} {desc} LIMIT ?", limite)
+    if marca == -1:
+        res = db.execute(f"SELECT * FROM productos ORDER BY {precio} {desc} LIMIT ?", limite)
+    else:
+        res = db.execute(f"SELECT * FROM productos WHERE id_marca=? ORDER BY {precio} {desc} LIMIT ?", marca, limite)
+
     return res
 
 def consultar_producto_id(id):
@@ -119,7 +123,7 @@ def buscar_producto(query, precio=False, desc=True ):
                     """, q, q, q, q)
     return res
 
-def consultar_productos_subcat(id, precio=False, desc=True):
+def consultar_productos_subcat(id, precio=False, desc=True, marca=-1):
     if desc:
         desc = 'DESC'
     else:
@@ -130,7 +134,10 @@ def consultar_productos_subcat(id, precio=False, desc=True):
     else:
         precio = 'id'
         
-    res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY {precio} {desc}", id)
+    if marca == -1:
+        res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY {precio} {desc}", id)
+    else:
+        res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? AND id_marca=? ORDER BY {precio} {desc}", id, marca)
     return res
 
 def consultar_faqs():
@@ -184,23 +191,23 @@ def traer_subcategorias():
     res = db.execute("SELECT * FROM subcategorias ORDER BY nombre ASC")
     return res
 
-def orderby_ultimos(orderby, limit=20):
+def orderby_ultimos(orderby, limit=20, marca=-1):
     if orderby == 'mayoramenor':
-        res = ultimos_productos(limit, True, True)
+        res = ultimos_productos(limit, True, True, marca)
     elif orderby == 'menoramayor':
-        res = ultimos_productos(limit, True, False)
+        res = ultimos_productos(limit, True, False, marca)
     else:
-        res = ultimos_productos(limit)
+        res = ultimos_productos(limit, False, True, marca)
         
     return res
 
-def orderby_cat(id, orderby):
+def orderby_cat(id, orderby, marca=-1):
     if orderby == 'mayoramenor':
-        res = consultar_productos_subcat(id, True, True)
+        res = consultar_productos_subcat(id, True, True, marca)
     elif orderby == 'menoramayor':
-        res = consultar_productos_subcat(id, True, False)
+        res = consultar_productos_subcat(id, True, False, marca)
     else:
-        res = consultar_productos_subcat(id)
+        res = consultar_productos_subcat(id, False, True, marca)
         
     return res
 def orderby_query(query, orderby):

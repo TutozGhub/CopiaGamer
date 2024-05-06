@@ -89,6 +89,7 @@ def productos():
     _scat = request.args.get('subcategoria', False)
     search = request.args.get('search', False)
     orderby = request.args.get('orderby', 'todos')
+    marca = request.args.get('marca', -1)
     id_scat = None
     id_cat = None
     orders =[
@@ -96,6 +97,7 @@ def productos():
         {'value': 'mayoramenor', 'text': 'Mayor precio'},
         {'value': 'menoramayor', 'text': 'Menor precio'}
     ]
+    marcas = traer_marcas()
 
     if not _scat:
         scat = 'novedades'
@@ -114,13 +116,13 @@ def productos():
     
     if not search:
         if not _scat:
-            productos = orderby_ultimos(orderby, 20)
+            productos = orderby_ultimos(orderby, 20, marca)
         else:
-            productos = orderby_cat(int(_scat), orderby)
+            productos = orderby_cat(int(_scat), orderby, marca)
     else:
         productos = orderby_query(search, orderby)
 
-    return render_template('productos.html',orderby=orderby, orders=orders, id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
+    return render_template('productos.html', search=search, marcas=marcas, orderby=orderby, orders=orders, id_scat=id_scat,id_cat=id_cat, scat=scat, cats=categorias, subcats=subcategorias, productos=productos)
 
 
 @app.route('/carro', methods=['POST', 'GET'])

@@ -14,8 +14,8 @@
 
 <!-- CLUSTER -->
     <div class="cluster">
-<!-- CATEGORIAS --> 
         <div class="accordion accordion-flush categorias acordeon-mod">
+        <!-- CATEGORIAS --> 
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#categorias" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -51,7 +51,27 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- FILTROS -->
+        {% if not search %}
+            <div class="accordion-item mt-2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed shadow-off" type="button" data-bs-toggle="collapse" data-bs-target="#filtros" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                        Filtros
+                    </button>
+                </h2>
+                <div id="filtros" class="accordion-collapse collapse" aria-labelledby="filtros">
+                    <div class="accordion-body p-2">
+                        <select name="marca" id="marca_filtro" class="form-select shadow-off">
+                            <option value="-1">Todas</option>
+                            {% for m in marcas %}
+                                <option value="{{ m['id'] }}">{{ m['nombre'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 
 <!-- PRODUCTOS -->
         <div class="productos">

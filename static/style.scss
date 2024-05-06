@@ -756,6 +756,10 @@ footer{
     border-bottom: solid 2px #{$primario} !important;
 }
 
+.marcas-fondo:hover{
+    background-color: #{$blanco} !important;
+}
+
 // @media querys
 
 @media(width <= 1280px){
