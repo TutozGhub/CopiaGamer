@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#orderby').change(function (e) {
 
-        let parametros = new URLSearchParams(window.location.search);
+        let parametros = new URLSearchParams(document.location.search);
         parametros = parametros.entries();
         let query = '?';
         let add = true;
@@ -18,10 +18,10 @@ $(document).ready(function () {
         if (add){
             query += `orderby=${e.target.value}`
         }
-        window.location.href = '/productos' + query;
+        document.location.href = '/productos' + query;
     });
     $('#marca_filtro').change(function (e) {
-        let parametros = new URLSearchParams(window.location.search);
+        let parametros = new URLSearchParams(document.location.search);
         parametros = parametros.entries();
         let query = '?';
         let add = true;
@@ -38,6 +38,6 @@ $(document).ready(function () {
         if (add){
             query += `marca=${e.target.value}`
         }
-        window.location.href = '/productos' + query;
+        document.location.href = '/productos' + query;
     });
 });
