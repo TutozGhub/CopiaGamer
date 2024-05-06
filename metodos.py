@@ -160,27 +160,33 @@ def traer_cats():
     return res
 
 def traer_subcats(id):
-    res = db.execute("SELECT * FROM subcategorias WHERE id_categoria = ?", id)
+    res = db.execute("SELECT * FROM subcategorias WHERE id_categoria = ? ORDER BY nombre ASC", id)
     return res
 def traer_marcas():
-    res = db.execute("SELECT * FROM marcas")
+    res = db.execute("SELECT * FROM marcas ORDER BY nombre ASC")
     return res
 
 def insert_producto(form):
-    nombre = form.get('nombre')
-    subcat = form.get('subcat')
-    precio = form.get('precio')
-    foto = form.get('foto')
-    marca = form.get('marca')
+    nombre = form.get('nombre', False)
+    subcat = form.get('subcat', False)
+    precio = form.get('precio', False)
+    marca = form.get('marca', False)
+    imagenes = form.get('imagenes', False)
 
-    if not nombre or not subcat or not precio or not foto or not marca:
+    if not nombre or not subcat or not precio or not imagenes or not marca:
         return False
 
-    db.execute("""
+    id = db.execute("""
             INSERT INTO productos
-             (nombre, subcategoria, precio, imagen, id_marca)
+             (nombre, subcategoria, precio, cantidad_imagenes, id_marca)
              VALUES (?,?,?,?,?);
-            """, nombre, subcat, precio, foto, marca)
+            """, nombre, subcat, precio, imagenes, marca)
+    foto = f'static\\image\\productos\\{id}\\'
+    db.execute("""
+            UPDATE productos
+             SET imagen = ?
+             WHERE id=?;
+            """, foto, id)
     return True
 
 def traer_categorias():

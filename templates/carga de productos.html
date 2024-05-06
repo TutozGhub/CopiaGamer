@@ -14,7 +14,11 @@
             <label for="">Categoria</label>
             <select name="categoria" id="">
                 {% for c in categorias %}
-                    <option value="{{ c['id'] }}">{{ c['nombre'] }}</option>
+                    {% if c['id'] == categoria %}
+                        <option value="{{ c['id'] }}" selected>{{ c['nombre'] }}</option>
+                    {% else %}
+                        <option value="{{ c['id'] }}">{{ c['nombre'] }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
             <button type="submit">Traer</button>
@@ -36,8 +40,8 @@
             <label for="">Precio</label>
             <input name="precio" type="number">
             <hr>
-            <label for="">Foto</label>
-            <input name="foto" type="text">
+            <label for="">Cantidad de imagenes</label>
+            <input name="imagenes" type="number">
             <hr>
             <button type="submit">Cargar Producto</button>
         </form>

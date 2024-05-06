@@ -89,7 +89,7 @@
                         <img src="{{ p['imagen'] }}1.png" class="card-img-top mx-2" alt="{{ p['nombre'] }}" loading="lazy">
                     </a>
                     <div class="card-body producto-body p-1 ps-3">
-                        <a href="/producto?id={{ p['id'] }}">
+                        <a class="mx-0" href="/producto?id={{ p['id'] }}">
                             {{ p['nombre'] | Tmax(100) }}
                         </a>
                         <p class="precio mt-2">{{ p['precio'] | M }}</p>

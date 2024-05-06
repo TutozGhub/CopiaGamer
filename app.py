@@ -213,7 +213,7 @@ if app.debug:
         if request.method == "POST":
             insert_producto(request.form)
 
-        cat = request.args.get("cat")
+        cat = int(request.args.get("cat", False))
         categorias = traer_cats()
 
         if not cat:
@@ -225,4 +225,4 @@ if app.debug:
         subcategorias = traer_subcats(cat)
         marcas = traer_marcas()
             
-        return render_template('carga de productos.html', categorias=categorias, subcategorias=subcategorias, marcas=marcas)
+        return render_template('carga de productos.html', categoria=cat, categorias=categorias, subcategorias=subcategorias, marcas=marcas)
