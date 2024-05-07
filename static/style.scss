@@ -570,6 +570,10 @@ footer{
         max-width: 40px;
     }
 }
+.col-especificaciones{
+    min-width: 50%;
+    max-width: 100%;
+}
 
 // Productos
 .contenido{
@@ -844,6 +848,9 @@ footer{
         a{
             text-decoration: none;
         }
+    }
+    .col-especificaciones{
+        width: 100%;
     }
     
 }

@@ -581,6 +581,11 @@ footer h5 {
   max-width: 40px;
 }
 
+.col-especificaciones {
+  min-width: 50%;
+  max-width: 100%;
+}
+
 .contenido {
   margin: auto;
   max-width: 1196px;
@@ -866,6 +871,9 @@ footer h5 {
   }
   .btn-carro a {
     text-decoration: none;
+  }
+  .col-especificaciones {
+    width: 100%;
   }
 }
 @media (width <= 820px) {

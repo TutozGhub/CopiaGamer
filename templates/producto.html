@@ -92,9 +92,9 @@
         <button id="btn-preguntas" class="text-uppercase btn-menu-producto">preguntas</button>
 
     <!-- ESPECIFICACIONES -->
-        <div id="especificaciones" class="row row-cols-2 producto-ajax">
+        <div id="especificaciones" class="row row-cols-auto producto-ajax">
             {% for e in especificaciones %}
-                <div class="col mt-4">
+                <div class="col mt-4 col-especificaciones">
                     <h6 class="text-uppercase caracteristicas">{{ e }}</h6>
                     <table class="table table-striped ">
                         {% for i in especificaciones[e] %}
