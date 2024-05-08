@@ -364,6 +364,11 @@ footer{
     flex-direction: row;
     justify-content: space-evenly;
     background-color: #{$blanco};
+    pointer-events:none;
+    user-select: none;
+    img{
+        pointer-events:none;
+    }
 }
 .sponsor{
     max-width: 150px;

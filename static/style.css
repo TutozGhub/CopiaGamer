@@ -368,6 +368,13 @@ footer h5 {
   flex-direction: row;
   justify-content: space-evenly;
   background-color: #fff;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.sponsors img {
+  pointer-events: none;
 }
 
 .sponsor {
