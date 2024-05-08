@@ -204,6 +204,10 @@ def ayuda():
     faqs = consultar_faqs()
     return render_template('ayuda.html', faqs=faqs)
 
+@app.route('/armatupc', methods=['GET'])
+def armatupc():
+    return render_template('armatupc.html')
+
 
 # CARGA -----------------------------------
 if app.debug:
