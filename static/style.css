@@ -2,6 +2,10 @@
   color: #fd611a !important;
 }
 
+.sombra {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
 body {
   --fondo: #eeeeee;
   background-color: var(--fondo);
@@ -434,6 +438,20 @@ footer h5 {
 
 .ultimo-precio {
   font-size: 20px;
+}
+
+.swiper-button-novedades {
+  padding: 1.3rem;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  border-radius: 100%;
+  color: #fff;
+  background-color: #fd611a;
+}
+
+.swiper-button-novedades::after {
+  font-size: small;
+  font-weight: 800;
 }
 
 .miniatura-select {
