@@ -11,7 +11,7 @@
         <div class="carousel-inner">
             {% for i in images %}
                     <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                        <img src="{{ i['imagen'] }}" class="d-block w-100" loading="lazy"/>
+                        <img src="{{ i['imagen'] }}" class="d-block w-100"/>
                     </div>
             {% endfor %}
         </div>

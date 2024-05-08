@@ -371,7 +371,6 @@ footer h5 {
   flex-direction: row;
   justify-content: space-evenly;
   background-color: #fff;
-  pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -821,6 +820,83 @@ footer h5 {
   background-color: #fff !important;
 }
 
+.armapc-cluster {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 1200px;
+}
+
+.armapc-body {
+  display: flex;
+  justify-content: center;
+}
+
+.armapc-pasos {
+  width: 35%;
+}
+
+.armapc-pasos-body {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 100%;
+  height: 28rem;
+  background-color: white;
+}
+
+.armapc-paso {
+  width: 66px;
+  height: 59px;
+}
+
+.armapc-controles {
+  border-radius: 5px;
+  width: 100%;
+  height: 7rem;
+  background-color: white;
+}
+
+.armapc-derecha {
+  width: 800px;
+}
+
+.armapc-marca {
+  height: 3rem;
+  width: 100%;
+}
+
+.armapc-productos {
+  align-content: start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.armapc-producto {
+  display: flex;
+  border-radius: 5px;
+  height: 148px;
+  width: 49%;
+  background-color: white;
+  padding: 1rem;
+  cursor: pointer;
+}
+.armapc-producto img {
+  max-height: 90%;
+  pointer-events: none;
+}
+
+.armapc-producto-body {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+  pointer-events: none;
+}
+
+.armapc-producto-selected {
+  border: 1px solid #fd611a !important;
+}
+
 @media (width <= 1280px) {
   .nav__buscar--logo {
     margin-right: 13%;
@@ -904,6 +980,14 @@ footer h5 {
   .col-especificaciones {
     width: 100%;
   }
+  .armapc-body {
+    flex-wrap: wrap;
+  }
+  .armapc-pasos {
+    max-width: 80%;
+    width: 80%;
+    margin-bottom: 2rem;
+  }
 }
 @media (width <= 820px) {
   .foot {
@@ -955,6 +1039,16 @@ footer h5 {
   }
   #orderby {
     width: 80%;
+  }
+}
+@media (width <= 650px) {
+  .armapc-productos {
+    display: flex;
+    justify-content: center;
+  }
+  .armapc-producto {
+    max-width: 90%;
+    width: 90%;
   }
 }
 @media (width <= 580px) {

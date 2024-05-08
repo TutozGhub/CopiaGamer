@@ -206,7 +206,54 @@ def ayuda():
 
 @app.route('/armatupc', methods=['GET'])
 def armatupc():
-    return render_template('armatupc.html')
+    paso = int(request.args.get('paso', 1))
+    tipo = int(request.args.get('tipo', False))
+
+    productoPaso = [
+    int(request.args.get('productoPaso1', -1)),
+    int(request.args.get('productoPaso2', -1)),
+    int(request.args.get('productoPaso3', -1)),
+    int(request.args.get('productoPaso4', -1)),
+    int(request.args.get('productoPaso5', -1)),
+    int(request.args.get('productoPaso6', -1)),
+    int(request.args.get('productoPaso7', -1)),
+    int(request.args.get('productoPaso8', -1)),
+    int(request.args.get('productoPaso9', -1)),
+    int(request.args.get('productoPaso10', -1))
+    ]
+    print (productoPaso)
+    if paso == 1:
+        if tipo == 10:
+            productos = consultar_productos_armatupc_subcat(10)
+        elif tipo == 11:
+            productos = consultar_productos_armatupc_subcat(11)
+        else:
+            productos = consultar_productos_armatupc_cat(1)
+    elif paso == 2:
+        if tipo == 10:
+            productos = consultar_productos_armatupc_subcat(13)
+        elif tipo == 11:
+            productos = consultar_productos_armatupc_subcat(14)
+        else:
+            productos = consultar_productos_armatupc_cat(7)
+    elif paso == 3:
+        productos = consultar_productos_armatupc_subcat(16)
+    elif paso == 4:
+        productos = consultar_productos_armatupc_cat(3)
+    elif paso == 5:
+        productos = consultar_productos_armatupc_cat(2)
+    elif paso == 6:
+        productos = consultar_productos_armatupc_cat(4)
+    elif paso == 7:
+        productos = consultar_productos_armatupc_cat(11)
+    elif paso == 8:
+        productos = consultar_productos_armatupc_cat(9)
+    elif paso == 9:
+        productos = consultar_productos_armatupc_cat(5)
+    elif paso == 10:
+        productos = consultar_productos_armatupc_cat(10)
+
+    return render_template('armatupc.html', productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
 
 
 # CARGA -----------------------------------

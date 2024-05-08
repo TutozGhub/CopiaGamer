@@ -140,6 +140,14 @@ def consultar_productos_subcat(id, precio=False, desc=True, marca=-1):
         res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? AND id_marca=? ORDER BY {precio} {desc}", id, marca)
     return res
 
+def consultar_productos_armatupc_subcat(subcat):
+    res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY precio asc", subcat)
+    return res
+
+def consultar_productos_armatupc_cat(cat):
+    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE id_categoria=? ORDER BY precio asc", cat)
+    return res
+
 def consultar_faqs():
     res = db.execute(f"SELECT * FROM faqs")
     return res
@@ -150,8 +158,6 @@ def consultar_preguntas(id_producto):
 
 def insertar_pregunta(pregunta, id_producto):
     db.execute(f"INSERT INTO preguntas(pregunta, id_producto) VALUES(?,?)", pregunta, id_producto)
-
-
 
 # CARGA
 
