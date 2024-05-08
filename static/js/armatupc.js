@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $('.armapc-paso').click(function (e) {
         const value = e.target.getAttribute("value");
-        window.location.href = editarQuery('paso', value, '/armatupc')[0];
+        $(location).attr('href', editarQuery('paso', value, '/armatupc')[0]);
     });
     $('.btn-tipo-armado').click(function (e) {
         const value = e.target.getAttribute("value");
-        window.location.href = editarQuery('tipo', value, '/armatupc', '')[0];
+        $(location).attr('href', editarQuery('tipo', value, '/armatupc', '')[0]);
     });
     $('.armapc-producto').click(function (e) {
         const value = e.target.getAttribute("value");
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
             url = editarQuery(`tipo`, tipo, '/armatupc', url)[1];
         }
-        window.location.href = editarQuery('paso', paso + 1, '/armatupc', url)[0]
+        $(location).attr('href', editarQuery('paso', paso + 1, '/armatupc', url)[0]);
     });
 });
 
