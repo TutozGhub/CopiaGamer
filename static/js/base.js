@@ -25,19 +25,20 @@ $(document).ready(function() {
         window.location.href = `/comprar`
     });
     
-    var sponsors = new Swiper(".mySwiperSponsors", {
-        slidesPerView: 'auto',
-        spaceBetween: 100,
-        centerSlide: 'true',
-        loop: true,
-        speed: 3000,
-        autoplay: {
-            delay: 1000,
-            disableOnInteraction: false,
-        },
-    });
-    sponsors.allowTouchMove = false;
 });
+
+var sponsors = new Swiper(".mySwiperSponsors", {
+    slidesPerView: 'auto',
+    spaceBetween: 100,
+    centerSlide: 'true',
+    loop: true,
+    speed: 3000,
+    autoplay: {
+        delay: 1000,
+        disableOnInteraction: false,
+    },
+});
+sponsors.allowTouchMove = false;
 
 function error_message(ID_form, RUTA, RUTA_SALIDA, ID_error){
 
