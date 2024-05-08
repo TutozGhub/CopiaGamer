@@ -5,50 +5,56 @@
 {% endblock %}
 
 {% block main %}
-<!-- SPONSORS -->
-<div id="eventos" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        {% for i in images %}
-                <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                    <img src="{{ i['imagen'] }}" class="d-block w-100" loading="lazy"/>
-                </div>
-        {% endfor %}
-    </div>
-    <div class="carousel-indicators">
-        {% for i in images %}
-            <button
-            type="button"
-            data-bs-target="#eventos"
-            data-bs-slide-to="{{ loop.index - 1 }}"
-            aria-label="Slide {{ loop.index - 1 }}"
-        {% if loop.index == 1 %}
-            class="active"
-        {% endif %}
-            ></button>
-        {% endfor %}
-    </div>
-</div>
-<!-- PRODUCTOS -->
-<div class="swiper mySwiper m-5"
-    <p><strong>ÚLTIMAS NOVEDADES</strong></p>
-    <hr>
-    <div class="swiper-wrapper novedades">
-        {% for p in productos %}
-        <div class="card swiper-slide card-ultimos">
-            <a href="/producto?id={{ p['id'] }}">
-                <img src="{{ p['imagen'] }}1.png" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
-                <div class="card-body ultimos-body">
-                    <small class="card-text">
-                        {{ p['nombre'] | Tmax(89) }}
-                    </small>
-                </div>
-                <p class="ultimo-precio precio m-0 mt-auto mb-2">{{ p['precio'] | M }}</p>
-            </a>
+<div class="m-auto" style="max-width: 1600px;">    
+    <!-- SPONSORS -->
+    <div id="eventos" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for i in images %}
+                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                        <img src="{{ i['imagen'] }}" class="d-block w-100" loading="lazy"/>
+                    </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="carousel-indicators">
+            {% for i in images %}
+                <button
+                type="button"
+                data-bs-target="#eventos"
+                data-bs-slide-to="{{ loop.index - 1 }}"
+                aria-label="Slide {{ loop.index - 1 }}"
+            {% if loop.index == 1 %}
+                class="active"
+            {% endif %}
+                ></button>
+            {% endfor %}
+        </div>
     </div>
-    <div class="swiper-button-next swiper-button-novedades sombra"></div>
-    <div class="swiper-button-prev swiper-button-novedades sombra"></div>
+    <!-- PRODUCTOS -->
+    <div class="ultimas-novedades mb-5">
+        <p><strong>ÚLTIMAS NOVEDADES</strong></p>
+        <hr>
+        <div class="d-flex">
+            <div class="swiper-button-prev swiper-button-novedades my-auto ms-auto" style="justify-content: center;"></div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper novedades">
+                    {% for p in productos %}
+                    <div class="card swiper-slide card-ultimos">
+                        <a href="/producto?id={{ p['id'] }}">
+                            <img src="{{ p['imagen'] }}1.png" class="card-img-top" alt="{{ p['nombre'] }}" loading="lazy">
+                            <div class="card-body ultimos-body">
+                                <small class="card-text">
+                                    {{ p['nombre'] | Tmax(89) }}
+                                </small>
+                            </div>
+                            <p class="ultimo-precio precio m-0 mt-auto mb-2">{{ p['precio'] | M }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="swiper-button-next swiper-button-novedades my-auto me-auto"></div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

@@ -10,7 +10,7 @@ $blanco: #fff;
     color: #{$primario} !important;
 }
 .sombra{
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 body{
@@ -78,6 +78,7 @@ body{
     --bs-btn-active-color: #{$blanco};
     --bs-btn-active-bg: #{darken($primario, 10%)};
     --bs-btn-active-border-color: #{darken($primario, 10%)};
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);
 }
 .nav__usuario--btn{
     display: flex;
@@ -359,8 +360,6 @@ footer{
 #eventos{
     display: flex;
     flex-direction: column;
-    max-width: 1600px;
-    margin: 0 auto;
 }
 .sponsors{
     display: flex;
@@ -430,6 +429,9 @@ footer{
 .ultimo-precio{
     font-size: 20px;
 }
+.ultimas-novedades{
+    margin: 1rem;
+}
 .swiper-button-novedades{
     padding: 1.3rem;
     max-width: 20px !important;
@@ -437,6 +439,8 @@ footer{
     border-radius: 100%;
     color: #{$blanco};
     background-color: #{$primario};
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    position: relative;
 }
 .swiper-button-novedades::after{
     font-size: small;

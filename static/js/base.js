@@ -30,7 +30,7 @@ $(document).ready(function() {
 var sponsors = new Swiper(".mySwiperSponsors", {
     slidesPerView: 'auto',
     spaceBetween: 100,
-    centerSlide: 'true',
+    centeredSlides: true,
     loop: true,
     speed: 3000,
     autoplay: {
