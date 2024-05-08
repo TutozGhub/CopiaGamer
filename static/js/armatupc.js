@@ -5,14 +5,20 @@ $(document).ready(function () {
     });
     $('.btn-tipo-armado').click(function (e) {
         const value = e.target.getAttribute("value");
-        window.location.href = editarQuery('tipo', value, '/armatupc')[0];
+        window.location.href = editarQuery('tipo', value, '/armatupc', '')[0];
     });
     $('.armapc-producto').click(function (e) {
         const value = e.target.getAttribute("value");
         let paso = parseInt(e.target.getAttribute("paso"));
-        const url = editarQuery(`productoPaso${paso}`, value, '/armatupc')[1];
-        console.log(url);
-        console.log(paso);
+        let url = editarQuery(`productoPaso${paso}`, value, '/armatupc')[1];
+        if (paso == 1 || paso == 2){
+            let tipo = parseInt(e.target.getAttribute("tipo"));
+
+            if (tipo == 13) tipo = 10;
+            if (tipo == 14) tipo = 11;
+
+            url = editarQuery(`tipo`, tipo, '/armatupc', url)[1];
+        }
         window.location.href = editarQuery('paso', paso + 1, '/armatupc', url)[0]
     });
 });
@@ -27,14 +33,13 @@ function editarQuery(parametro, valor, urlOut, urlIn=window.location.search){
         if (p[0] == parametro){
             query += `${p[0]}=${valor}&`;
             add = false;
-            console.log(valor == p[1]);
         }
         else{
             query += `${p[0]}=${p[1]}&`;
         }
     });
     if (add){
-        query += `${parametro}=${valor}`;
+        query += `${parametro}=${valor}&`;
     }
     return [urlOut + query, query];
 }

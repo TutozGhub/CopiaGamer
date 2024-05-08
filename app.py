@@ -207,7 +207,7 @@ def ayuda():
 @app.route('/armatupc', methods=['GET'])
 def armatupc():
     paso = int(request.args.get('paso', 1))
-    tipo = int(request.args.get('tipo', False))
+    tipo = int(request.args.get('tipo', -1))
 
     productoPaso = [
     int(request.args.get('productoPaso1', -1)),

@@ -141,11 +141,11 @@ def consultar_productos_subcat(id, precio=False, desc=True, marca=-1):
     return res
 
 def consultar_productos_armatupc_subcat(subcat):
-    res = db.execute(f"SELECT * FROM productos WHERE subcategoria=? ORDER BY precio asc", subcat)
+    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE subcategoria=? ORDER BY precio asc", subcat)
     return res
 
 def consultar_productos_armatupc_cat(cat):
-    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE id_categoria=? ORDER BY precio asc", cat)
+    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE id_categoria=? ORDER BY precio asc", cat)
     return res
 
 def consultar_faqs():

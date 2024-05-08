@@ -47,7 +47,7 @@
                 {% endif %}
                 <div class="row row-cols-2 m-0 armapc-productos">
                     {% for p in productos %}
-                        <div value="{{ p['id'] }}" paso="{{ paso }}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
+                        <div value="{{ p['id'] }}" paso="{{ paso }}" tipo="{{p['subcat']}}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
                             <img class="p-2" src="{{ p['imagen'] }}1.png" alt="{{ p['nombre'] }}">
                             <div class="armapc-producto-body">
                                 <small class="mt-auto" title="{{ p['nombre'] }}"><strong>{{ p['nombre'] | Tmax(100) }}</strong></small>
