@@ -871,6 +871,40 @@ footer h5 {
   width: 100%;
 }
 
+.btn-tipo-armado {
+  --color-btn: black;
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: .2rem;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: none;
+  --bs-btn-border-color: var(--color-btn);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: none;
+  --bs-btn-hover-border-color: var(--color-btn);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--color-btn);
+  --bs-btn-active-border-color: var(--color-btn);
+  width: 7rem;
+}
+.btn-tipo-armado img {
+  pointer-events: none;
+  max-height: 1rem;
+}
+
+.btn-amd {
+  --color-btn: black;
+}
+.btn-amd.active img, .btn-amd:active img {
+  filter: invert(1) !important;
+}
+
+.btn-intel {
+  --color-btn: #00c7fd;
+}
+.btn-intel.active img, .btn-intel:active img {
+  filter: brightness(0) invert(1);
+}
+
 .armapc-productos {
   align-content: start;
   justify-content: space-between;
@@ -992,6 +1026,11 @@ footer h5 {
     max-width: 80%;
     width: 80%;
     margin-bottom: 2rem;
+  }
+  .armapc-marca {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0;
   }
 }
 @media (width <= 820px) {

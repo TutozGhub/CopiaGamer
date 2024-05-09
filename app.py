@@ -246,6 +246,7 @@ def armatupc():
     paso = int(request.args.get('paso', 1))
     tipo = int(request.args.get('tipo', -1))
     cooler_default = False
+    pasos_info = traer_info_paso(paso)[0]
     productoPaso = [
     int(request.args.get('productoPaso1', -1)),
     int(request.args.get('productoPaso2', -1)),
@@ -274,7 +275,7 @@ def armatupc():
             else:
                 watts += 8
 
-
+    
     match paso:
         case 1:
             match tipo:
@@ -317,7 +318,7 @@ def armatupc():
                 if i == -2:
                     cooler_default = load(open('static/jsons/armarpc.json',encoding="utf8"))['cooler']
 
-    return render_template('armatupc.html', watts=watts, total=total, cooler=cooler_default, productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
+    return render_template('armatupc.html', pasos_info=pasos_info, watts=watts, total=total, cooler=cooler_default, productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
 
 
 # CARGA -----------------------------------

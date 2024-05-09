@@ -3,9 +3,17 @@
 {% block main %}
     <div class="m-2 p-2 mx-auto armapc-cluster">
     <!-- CABECERA CON INFO DEL PASO -->
-        <div class="text-left"><h1>
-            Titulo
-        </h1></div>
+        <div class="text-left m-2 d-flex">
+            <div>
+                <h4 class="mb-4"><strong>{{ pasos_info['titulo'] }}</strong></h4>
+                <p>{{ pasos_info['texto']}}</p>
+            </div>
+            {% if tipo == 11 %}
+                <img class="m-0 my-auto ms-auto" src="/static/image/intel-logo.png" alt="INTEL" style="max-height: 2rem;">
+            {% elif tipo == 10 %}
+                <img class="m-0 my-auto ms-auto" src="/static/image/amd.png" alt="AMD" style="max-height: 2rem;">
+            {% endif %}
+        </div>
         <div class="armapc-body">
         <!-- PASOS DEL ARMADO -->
             <div class="armapc-pasos">
@@ -43,10 +51,12 @@
                         <button id="btn-volver-paso" paso="{{paso}}" class="btn btn-bd-primary">VOLVER ATRÁS</button>
                     </div>
                     <div class="col my-auto">
-                        {% if paso < 11 %}
+                        {% if paso < 10 %}
                             <button id="btn-avanzar-paso" paso="{{paso}}" class="btn btn-bd-primary">SALTEAR PASO</button>
-                        {% else %}
-                            <button id="btn-terminarpc" paso="{{paso}}" class="btn btn-bd-primary">TERMINAR</button>
+                        {% elif paso == 10 %}
+                            <button id="btn-avanzar-paso" paso="{{paso}}" class="btn btn-bd-primary">TERMINAR</button>
+                        {% elif paso == 11 %}
+                            <button id="btn-terminarpc" paso="{{paso}}" class="btn btn-bd-primary">IR AL CARRITO</button>
                         {% endif %}
                     </div>
                 </div>
@@ -57,11 +67,19 @@
                 <!-- BOTONES DE INTEL Y AMD -->
                     <div class="armapc-marca">
                         {% if tipo %}
-                            <button value="10" class="btn btn-outline-dark btn-tipo-armado {% if tipo == 10 %} active {% endif %}" data-bs-toggle="button" {% if tipo == 10 %} aria-pressed="true" {% endif %} type="submit">AMD</button>
-                            <button value="11" class="btn btn-outline-info btn-tipo-armado {% if tipo == 11 %} active {% endif %}" data-bs-toggle="button" {% if tipo == 10 %} aria-pressed="true" {% endif %} type="submit">Intel</button>
+                            <button value="10" class="btn btn-outline-dark btn-tipo-armado {% if tipo == 10 %} active {% endif %} btn-amd" data-bs-toggle="button" {% if tipo == 10 %} aria-pressed="true" {% endif %} type="submit">
+                                <img src="/static/image/amd.png" alt="AMD">
+                            </button>
+                            <button value="11" class="btn btn-outline-info btn-tipo-armado {% if tipo == 11 %} active {% endif %} btn-intel" data-bs-toggle="button" {% if tipo == 10 %} aria-pressed="true" {% endif %} type="submit">
+                                <img src="/static/image/intel-logo.png" alt="INTEL">
+                            </button>
                         {% else %}
-                            <button value="10" class="btn btn-outline-dark btn-tipo-armado" data-bs-toggle="button" type="submit">AMD</button>
-                            <button value="11" class="btn btn-outline-info btn-tipo-armado" data-bs-toggle="button" type="submit">Intel</button>
+                            <button value="10" class="btn btn-outline-dark btn-tipo-armado btn-amd" data-bs-toggle="button" type="submit">
+                                <img src="/static/image/amd.png" alt="AMD">
+                            </button>
+                            <button value="11" class="btn btn-outline-info btn-tipo-armado btn-intel" data-bs-toggle="button" type="submit">
+                                <img src="/static/image/intel-logo.png" alt="INTEL">
+                            </button>
                         {% endif %}
                     </div>
                 {% endif %}
@@ -76,6 +94,11 @@
                             <li><strong>1</strong> X ARMADO BASICO DE PC (No incluye instalación de sistema operativo)</li>
                         </div>
                         <p class="precio fs-4 mt-auto mb-0 ms-4">Total: {{ total | M }}</p>
+                        <div class="alert alert-warning d-flex align-items-center mt-4 p-2 px-4" role="alert" style="background-color: none !important">
+                            <div style="color: black;">
+                                Al precio indicado se le agregará el costo de armado y, en caso que corresponda, el costo de la instalación del cooler y del cable de fuente.
+                            </div>
+                        </div>
                     </div>
                 {% else %}
                 <!-- CONTENEDOR DE CARDS DE PRODUCTOS -->

@@ -829,6 +829,44 @@ footer{
     height: 3rem;
     width: 100%;
 }
+.btn-tipo-armado{
+    --color-btn: black;
+    --bs-btn-font-weight: 600;
+    --bs-btn-border-radius: .2rem;
+    
+    --bs-btn-color: #{$blanco};
+    --bs-btn-bg: none;
+    --bs-btn-border-color: var(--color-btn);
+
+    --bs-btn-hover-color: #{$blanco};
+    --bs-btn-hover-bg: none;
+    --bs-btn-hover-border-color: var(--color-btn);
+
+    --bs-btn-active-color: #{$blanco};
+    --bs-btn-active-bg: var(--color-btn);
+    --bs-btn-active-border-color: var(--color-btn);
+    width: 7rem;
+    img{
+        pointer-events: none;
+        max-height: 1rem;
+    }
+}
+.btn-amd{
+    --color-btn: black;
+    &.active, &:active{
+        img{
+            filter: invert(1) !important;
+        }
+    }
+}
+.btn-intel{
+    --color-btn: #00c7fd;
+    &.active, &:active{
+        img{
+            filter: brightness(0) invert(1);
+        }
+    }
+}
 .armapc-productos{
     align-content: start;
     justify-content: space-between;
@@ -953,6 +991,11 @@ footer{
         max-width: 80%;
         width: 80%;
         margin-bottom: 2rem;
+    }
+    .armapc-marca{
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1rem 0;
     }
 }
 @media (width <= 820px){

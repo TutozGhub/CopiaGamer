@@ -82,9 +82,9 @@ def ultimos_productos(limite=20, precio=False, desc=True, marca=-1):
         precio = 'id'
 
     if marca == -1:
-        res = db.execute(f"SELECT * FROM productos ORDER BY {precio} {desc} LIMIT ?", limite)
+        res = db.execute(f"SELECT * FROM (SELECT * FROM productos ORDER BY id DESC LIMIT ?) ORDER BY {precio} {desc}", limite)
     else:
-        res = db.execute(f"SELECT * FROM productos WHERE id_marca=? ORDER BY {precio} {desc} LIMIT ?", marca, limite)
+        res = db.execute(f"SELECT * FROM (SELECT * FROM productos WHERE id_marca=? ORDER BY id DESC LIMIT ?) ORDER BY {precio} {desc}", marca, limite)
 
     return res
 
@@ -141,23 +141,29 @@ def consultar_productos_subcat(id, precio=False, desc=True, marca=-1):
     return res
 
 def consultar_productos_armatupc_subcat(subcat):
-    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE subcategoria=? ORDER BY precio asc", subcat)
+    res = db.execute("SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE subcategoria=? ORDER BY precio asc", subcat)
     return res
 
 def consultar_productos_armatupc_cat(cat):
-    res = db.execute(f"SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE id_categoria=? ORDER BY precio asc", cat)
+    res = db.execute("SELECT p.id, p.nombre, p.precio, p.imagen, sc.id AS subcat FROM productos AS p JOIN subcategorias AS sc ON p.subcategoria = sc.id WHERE id_categoria=? ORDER BY precio asc", cat)
     return res
 
 def consultar_faqs():
-    res = db.execute(f"SELECT * FROM faqs")
+    res = db.execute("SELECT * FROM faqs")
     return res
 
 def consultar_preguntas(id_producto):
-    res = db.execute(f"SELECT * FROM preguntas WHERE id_producto=? ORDER BY id desc", id_producto)
+    res = db.execute("SELECT * FROM preguntas WHERE id_producto=? ORDER BY id desc", id_producto)
     return res
 
 def insertar_pregunta(pregunta, id_producto):
     db.execute(f"INSERT INTO preguntas(pregunta, id_producto) VALUES(?,?)", pregunta, id_producto)
+
+
+def traer_info_paso(paso):
+    res = db.execute("SELECT * FROM pasos WHERE paso=?", paso)
+    return res
+
 
 # CARGA
 
