@@ -208,7 +208,7 @@ def ayuda():
 def armatupc():
     paso = int(request.args.get('paso', 1))
     tipo = int(request.args.get('tipo', -1))
-
+    cooler_default = False
     productoPaso = [
     int(request.args.get('productoPaso1', -1)),
     int(request.args.get('productoPaso2', -1)),
@@ -222,6 +222,23 @@ def armatupc():
     int(request.args.get('productoPaso10', -1))
     ]
     
+    total = 0
+    watts = 0
+    for i in productoPaso:
+        if i > 0:
+            producto = consultar_producto_id(i)[0]
+            precio = producto['precio']
+            total += precio
+            subcat = producto['id_subcategoria']
+            print(subcat)
+            if subcat in [10,11,13,14]:
+                watts += 48
+            elif subcat in [8,9]:
+                watts += 186
+            else:
+                watts += 8
+
+
     match paso:
         case 1:
             match tipo:
@@ -241,6 +258,7 @@ def armatupc():
                     productos = consultar_productos_armatupc_cat(7)
         case 3:
             productos = consultar_productos_armatupc_subcat(16)
+            cooler_default = load(open('static/jsons/armarpc.json',encoding="utf8"))['cooler']
         case 4:
             productos = consultar_productos_armatupc_cat(3)
         case 5:
@@ -255,8 +273,10 @@ def armatupc():
             productos = consultar_productos_armatupc_cat(5)
         case 10:
             productos = consultar_productos_armatupc_cat(10)
+        case 11:
+            productos = False
 
-    return render_template('armatupc.html', productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
+    return render_template('armatupc.html', watts=watts, total=total, cooler=cooler_default, productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
 
 
 # CARGA -----------------------------------

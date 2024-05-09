@@ -29,8 +29,23 @@
                         <img class="mx-auto armapc-paso" value="10" loading="lazy"  src="/static/image/armarpc/{% if paso==10 %}10.1.png {% else %}10.png {% endif %}" alt="PERIFERICOS">
                     </div>
                 </div>
-                <div class="mt-4 armapc-controles sombra">
-                    
+                <div class="mt-4 row row-cols-2 mx-0 armapc-controles sombra text-center">
+                    <div class="col my-auto">
+                        ({{watts}} watts)
+                    </div>
+                    <div class="col my-auto">
+                        <strong>Total: {{ total | M }}</strong>
+                    </div>
+                    <div class="col my-auto">
+                        <button id="btn-volver-paso" paso="{{paso}}" class="btn btn-bd-primary">VOLVER ATRÁS</button>
+                    </div>
+                    <div class="col my-auto">
+                        {% if paso < 11 %}
+                            <button id="btn-avanzar-paso" paso="{{paso}}" class="btn btn-bd-primary">SALTEAR PASO</button>
+                        {% else %}
+                            <button id="btn-terminarpc" paso="{{paso}}" class="btn btn-bd-primary">TERMINAR</button>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="mx-2 mb-2 armapc-derecha">
@@ -46,19 +61,34 @@
                     </div>
                 {% endif %}
                 <div class="row row-cols-2 m-0 armapc-productos">
-                    {% for p in productos %}
-                        <div value="{{ p['id'] }}" paso="{{ paso }}" tipo="{{p['subcat']}}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
-                            <img class="p-2" src="{{ p['imagen'] }}1.png" alt="{{ p['nombre'] }}">
-                            <div class="armapc-producto-body">
-                                <small class="mt-auto" title="{{ p['nombre'] }}"><strong>{{ p['nombre'] | Tmax(100) }}</strong></small>
-                                <p class="mb-auto">{{ p['precio'] | M }}</p>
-                                <div class="mt-auto">
-                                <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
-                                <small style="color: #4caf50;"> Compatible</small>
-                                </div>
+                    {% if cooler %}
+                    <div value="{{ cooler['id'] }}" paso="{{ paso }}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == cooler['id'] %}armapc-producto-selected{% endif %}">
+                        <img class="p-2" src="{{ cooler['imagen'] }}" alt="{{ cooler['nombre'] }}">
+                        <div class="armapc-producto-body">
+                            <small class="mt-auto" title="{{ cooler['nombre'] }}"><strong>{{ cooler['nombre'] | Tmax(100) }}</strong></small>
+                            <p class="mb-auto">{{ cooler['precio'] | M }}</p>
+                            <div class="mt-auto">
+                            <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
+                            <small style="color: #4caf50;"> Compatible</small>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if paso < 11 %}
+                        {% for p in productos %}
+                            <div value="{{ p['id'] }}" paso="{{ paso }}" tipo="{{p['subcat']}}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
+                                <img class="p-2" src="{{ p['imagen'] }}1.png" alt="{{ p['nombre'] }}">
+                                <div class="armapc-producto-body">
+                                    <small class="mt-auto" title="{{ p['nombre'] }}"><strong>{{ p['nombre'] | Tmax(100) }}</strong></small>
+                                    <p class="mb-auto">{{ p['precio'] | M }}</p>
+                                    <div class="mt-auto">
+                                    <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
+                                    <small style="color: #4caf50;"> Compatible</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

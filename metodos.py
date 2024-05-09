@@ -90,7 +90,7 @@ def ultimos_productos(limite=20, precio=False, desc=True, marca=-1):
 
 def consultar_producto_id(id):
     res = db.execute("""
-                    SELECT p.id, p.nombre, precio, imagen, cantidad_imagenes, c.nombre AS [categoria], sc.nombre AS [subcategoria], m.nombre AS [marca]
+                    SELECT p.id, p.nombre, precio, imagen, cantidad_imagenes, c.nombre AS [categoria], sc.nombre AS [subcategoria], m.nombre AS [marca], sc.id AS [id_subcategoria]
                      FROM productos AS p
                      JOIN subcategorias AS sc ON p.subcategoria = sc.id
                      JOIN categorias AS c ON c.id = sc.id_categoria

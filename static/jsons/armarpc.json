@@ -1,0 +1,14 @@
+{
+    "cooler":{
+        "id": -2,
+        "nombre": "Usar Cooler CPu incluido en el procesador",
+        "precio": 0,
+        "imagen": "https://compragamer.net/assets/img/sin_foto-mini.jpg"
+    },
+    "armado":{
+        "id": -3,
+        "nombre": "Armado Basico De Pc (No Incluye Instalación De Sistema Operativo)",
+        "precio": 2000,
+        "imagen": "https://compragamer.net/assets/img/armado_new.jpg"
+    }
+}

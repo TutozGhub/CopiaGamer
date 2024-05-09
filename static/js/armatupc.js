@@ -21,6 +21,19 @@ $(document).ready(function () {
         }
         $(location).attr('href', editarQuery('paso', paso + 1, '/armatupc', url)[0]);
     });
+    $('#btn-volver-paso').click(function (e) { 
+        let paso = parseInt(e.target.getAttribute("paso"));
+        if (paso > 1){
+            $(location).attr('href', editarQuery('paso', paso - 1, '/armatupc')[0]);
+        }
+    });
+    $('#btn-avanzar-paso').click(function (e) { 
+        let paso = parseInt(e.target.getAttribute("paso"));
+        $(location).attr('href', editarQuery('paso', paso + 1, '/armatupc')[0]);
+    });
+    $('#btn-terminarpc').click(function (e) { 
+        $(location).attr('href', '/carro');
+    });
 });
 
 function editarQuery(parametro, valor, urlOut, urlIn=window.location.search){
