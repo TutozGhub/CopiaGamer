@@ -32,7 +32,7 @@ $(document).ready(function () {
         $(location).attr('href', editarQuery('paso', paso + 1, '/armatupc')[0]);
     });
     $('#btn-terminarpc').click(function (e) { 
-        $(location).attr('href', '/carro');
+        $(location).attr('href', '/add/armatupc' + window.location.search);
     });
 });
 

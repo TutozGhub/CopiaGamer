@@ -1,30 +1,51 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="m-2 p-2" style="min-height: 70vh;">
+<div class="m-2 p-2 mx-auto" style="min-height: 70vh; max-width: 1200px;">
     <h4>Carrito de compras</h4>
     {% if productos %}
+    <!-- PRODUCTOS -->
         {% for p in productos %}
-
-            <div class="card ms-2 mb-2 p-2 card-carro">
-                <a class="my-auto" href="/producto?id={{ p['id'] }}">
-                    <img src="{{ p['imagen'] }}1.png" class="card-img-top img-carro" alt="{{ p['nombre'] }}" loading="lazy">
-                </a>
-                <div class="card-body body-carro">
-                    <a href="/producto?id={{ p['id'] }}">
-                        {{ p['nombre'] }}
+            {% if p['id'] in [-2, -3] %}
+                <div class="card ms-2 mb-2 p-2 card-carro sombra">
+                    <a class="my-auto">
+                        <img src="{{ p['imagen'] }}" class="card-img-top img-carro" alt="{{ p['nombre'] }}" loading="lazy">
                     </a>
+                    <div class="card-body body-carro">
+                        <a>
+                            {{ p['nombre'] }}
+                        </a>
+                    </div>
+                    <input id="cantidad-{{ p['id'] }}" class="text-center input-cantidad-ajax" type="text" value="x{{ p['cantidad'] }}" readonly>
+                    <h5 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ (p['precio'] * p['cantidad']) | M }}</h5>
+                    <div class="div-borrar-carro">
+                        <a href="/delete?id={{ p['id'] }}" class="btn-borrar-carro">
+                            <img src="https://cdn.icon-icons.com/icons2/931/PNG/512/delete_remove_bin_icon-icons.com_72400.png" alt="eliminar" loading="lazy">
+                        </a>
+                    </div>
                 </div>
-                <input id="cantidad-{{ p['id'] }}" class="text-center input-cantidad-ajax" type="text" value="x{{ p['cantidad'] }}" readonly>
-                <h5 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ (p['precio'] * p['cantidad']) | M }}</h5>
-                <div class="div-borrar-carro">
-                    <a href="/delete?id={{ p['id'] }}" class="btn-borrar-carro">
-                        <img src="https://cdn.icon-icons.com/icons2/931/PNG/512/delete_remove_bin_icon-icons.com_72400.png" alt="eliminar" loading="lazy">
+            {% else %}
+                <div class="card ms-2 mb-2 p-2 card-carro sombra">
+                    <a class="my-auto" href="/producto?id={{ p['id'] }}">
+                        <img src="{{ p['imagen'] }}1.png" class="card-img-top img-carro" alt="{{ p['nombre'] }}" loading="lazy">
                     </a>
+                    <div class="card-body body-carro">
+                        <a href="/producto?id={{ p['id'] }}">
+                            {{ p['nombre'] }}
+                        </a>
+                    </div>
+                    <input id="cantidad-{{ p['id'] }}" class="text-center input-cantidad-ajax" type="text" value="x{{ p['cantidad'] }}" readonly>
+                    <h5 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ (p['precio'] * p['cantidad']) | M }}</h5>
+                    <div class="div-borrar-carro">
+                        <a href="/delete?id={{ p['id'] }}" class="btn-borrar-carro">
+                            <img src="https://cdn.icon-icons.com/icons2/931/PNG/512/delete_remove_bin_icon-icons.com_72400.png" alt="eliminar" loading="lazy">
+                        </a>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
-            <div class="card ms-2 mb-2 p-2 card-carro card-carro-total">
+            {% endif %}
+        {% endfor %}
+        <!-- CARD DE MEDIOS DE PAGO -->
+            <div class="card ms-2 mb-2 p-2 card-carro card-carro-total sombra">
                 <img src="https://compragamer.com.ar/PatchRouterSection/assets/img/pgold.png" class="card-img-top img-carro" alt="Pago gamer" loading="lazy">
                 <div class="card-body body-carro">
                     <div class="form-check">
@@ -51,6 +72,7 @@
                     <h4 class="precio m-0 mx-5 text-center" style="min-width: 9rem;">{{ total | M }}</h4>
                 </div>
             </div>
+            <!-- BOTON DE COMPRA -->
                 {% if session["id_usuario"] %}
                 <div class="btn-carro">
                     <button id="comprar" class="btn btn-bd-primary nav__usuario--btn m-0 ms-auto">
@@ -65,6 +87,7 @@
                 </div>
                 {% endif %}
         {% else %}
+    <!-- NO HAY PRODUCTOS EN EL CARRO -->
         <p class="text-center">No hay elementos en el carrito</p>
         <div class="btn-carro">
             <a href="/productos" class="m-0 mx-auto">

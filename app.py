@@ -140,18 +140,58 @@ def carro():
 def add_carro():
     id = request.args.get('id', False)
     url = request.args.get('url', False)
+
     if not id or not url:
         return redirect('/')
     
+    add_carr_mem(id)
+    return redirect(url)
+
+@app.route('/add/armatupc', methods=['GET'])
+def add_carro_armatupc():
+    productoPaso = [
+    int(request.args.get('productoPaso1', -1)),
+    int(request.args.get('productoPaso2', -1)),
+    int(request.args.get('productoPaso3', -1)),
+    int(request.args.get('productoPaso4', -1)),
+    int(request.args.get('productoPaso5', -1)),
+    int(request.args.get('productoPaso6', -1)),
+    int(request.args.get('productoPaso7', -1)),
+    int(request.args.get('productoPaso8', -1)),
+    int(request.args.get('productoPaso9', -1)),
+    int(request.args.get('productoPaso10', -1))
+    ]
+    
+    session['productos_carro'] = []
+    session['productos_carro_count'] = 0
+
+    for i in productoPaso:
+        if i != -1:
+            add_carr_mem(i)
+
+    add_carr_mem(-3)
+    return redirect('/carro')
+
+def add_carr_mem(id):
     productos = session.get('productos_carro', [])
     found = False
+    producto = None
+
     for p in productos:
-        if str(p['id']) == str(id):
+        if str(p['id']) == str(id) and id not in [-2, -3]:
             p['cantidad'] += 1
             found = True
             break
-    if not found and len(consultar_producto_id(id)) == 1:
-        producto = consultar_producto_id(id)[0]
+        
+    if not found:
+        if id == -2:
+            producto = load(open('static/jsons/armarpc.json',encoding="utf8"))['cooler']
+        elif id == -3:
+            producto = load(open('static/jsons/armarpc.json',encoding="utf8"))['armado']
+        elif len(consultar_producto_id(id)) == 1:
+            producto = consultar_producto_id(id)[0]
+            
+        print(producto)
         producto = {
             'id': producto['id'],
             'nombre': producto['nombre'],
@@ -167,9 +207,6 @@ def add_carro():
         session['productos_carro_count'] = 1
     else:
         session['productos_carro_count'] += 1
-    
-
-    return redirect(url)
 
 @app.route('/delete', methods=['GET'])
 def delete_carro():
