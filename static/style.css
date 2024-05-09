@@ -894,7 +894,7 @@ footer h5 {
 }
 
 .armapc-producto-selected {
-  border: 1px solid #fd611a !important;
+  border: 2px solid #fd611a !important;
 }
 
 @media (width <= 1280px) {

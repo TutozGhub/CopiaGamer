@@ -221,37 +221,40 @@ def armatupc():
     int(request.args.get('productoPaso9', -1)),
     int(request.args.get('productoPaso10', -1))
     ]
-    print (productoPaso)
-    if paso == 1:
-        if tipo == 10:
-            productos = consultar_productos_armatupc_subcat(10)
-        elif tipo == 11:
-            productos = consultar_productos_armatupc_subcat(11)
-        else:
-            productos = consultar_productos_armatupc_cat(1)
-    elif paso == 2:
-        if tipo == 10:
-            productos = consultar_productos_armatupc_subcat(13)
-        elif tipo == 11:
-            productos = consultar_productos_armatupc_subcat(14)
-        else:
-            productos = consultar_productos_armatupc_cat(7)
-    elif paso == 3:
-        productos = consultar_productos_armatupc_subcat(16)
-    elif paso == 4:
-        productos = consultar_productos_armatupc_cat(3)
-    elif paso == 5:
-        productos = consultar_productos_armatupc_cat(2)
-    elif paso == 6:
-        productos = consultar_productos_armatupc_cat(4)
-    elif paso == 7:
-        productos = consultar_productos_armatupc_cat(11)
-    elif paso == 8:
-        productos = consultar_productos_armatupc_cat(9)
-    elif paso == 9:
-        productos = consultar_productos_armatupc_cat(5)
-    elif paso == 10:
-        productos = consultar_productos_armatupc_cat(10)
+    
+    match paso:
+        case 1:
+            match tipo:
+                case 10:
+                    productos = consultar_productos_armatupc_subcat(10)
+                case 11:
+                    productos = consultar_productos_armatupc_subcat(11)
+                case _:
+                    productos = consultar_productos_armatupc_cat(1)
+        case 2:
+            match tipo:
+                case 10:
+                    productos = consultar_productos_armatupc_subcat(13)
+                case 11:
+                    productos = consultar_productos_armatupc_subcat(14)
+                case _:
+                    productos = consultar_productos_armatupc_cat(7)
+        case 3:
+            productos = consultar_productos_armatupc_subcat(16)
+        case 4:
+            productos = consultar_productos_armatupc_cat(3)
+        case 5:
+            productos = consultar_productos_armatupc_cat(2)
+        case 6:
+            productos = consultar_productos_armatupc_cat(4)
+        case 7:
+            productos = consultar_productos_armatupc_cat(11)
+        case 8:
+            productos = consultar_productos_armatupc_cat(9)
+        case 9:
+            productos = consultar_productos_armatupc_cat(5)
+        case 10:
+            productos = consultar_productos_armatupc_cat(10)
 
     return render_template('armatupc.html', productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
 
