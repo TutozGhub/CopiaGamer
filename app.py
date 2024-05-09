@@ -230,7 +230,6 @@ def armatupc():
             precio = producto['precio']
             total += precio
             subcat = producto['id_subcategoria']
-            print(subcat)
             if subcat in [10,11,13,14]:
                 watts += 48
             elif subcat in [8,9]:
@@ -274,7 +273,12 @@ def armatupc():
         case 10:
             productos = consultar_productos_armatupc_cat(10)
         case 11:
-            productos = False
+            productos = []
+            for i in productoPaso:
+                if i > 0:
+                    productos.append(consultar_producto_id(i)[0])
+                if i == -2:
+                    cooler_default = load(open('static/jsons/armarpc.json',encoding="utf8"))['cooler']
 
     return render_template('armatupc.html', watts=watts, total=total, cooler=cooler_default, productoPaso=productoPaso, productos=productos, paso=paso, tipo=tipo)
 

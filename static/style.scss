@@ -698,6 +698,11 @@ footer{
     border-left-width: 10px;
 }
 
+.bordeizquierdo-color{
+    border-left-color: #{$primario};
+    border-left-width: 10px;
+}
+
 .body-carro{
     a{
         color: black;

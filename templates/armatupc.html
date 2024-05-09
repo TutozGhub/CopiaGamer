@@ -2,10 +2,12 @@
 
 {% block main %}
     <div class="m-2 p-2 mx-auto armapc-cluster">
+    <!-- CABECERA CON INFO DEL PASO -->
         <div class="text-left"><h1>
             Titulo
         </h1></div>
         <div class="armapc-body">
+        <!-- PASOS DEL ARMADO -->
             <div class="armapc-pasos">
                 <div class="armapc-pasos-body sombra">
                     <div class="my-auto d-flex">
@@ -29,6 +31,7 @@
                         <img class="mx-auto armapc-paso" value="10" loading="lazy"  src="/static/image/armarpc/{% if paso==10 %}10.1.png {% else %}10.png {% endif %}" alt="PERIFERICOS">
                     </div>
                 </div>
+            <!-- CONTROLES DE LOS PASOS E INFO DE LA PC -->
                 <div class="mt-4 row row-cols-2 mx-0 armapc-controles sombra text-center">
                     <div class="col my-auto">
                         ({{watts}} watts)
@@ -48,8 +51,10 @@
                     </div>
                 </div>
             </div>
+        <!-- PARTE DE LOS PRODUCTOS -->
             <div class="mx-2 mb-2 armapc-derecha">
                 {% if paso == 1 %}
+                <!-- BOTONES DE INTEL Y AMD -->
                     <div class="armapc-marca">
                         {% if tipo %}
                             <button value="10" class="btn btn-outline-dark btn-tipo-armado {% if tipo == 10 %} active {% endif %}" data-bs-toggle="button" {% if tipo == 10 %} aria-pressed="true" {% endif %} type="submit">AMD</button>
@@ -60,36 +65,52 @@
                         {% endif %}
                     </div>
                 {% endif %}
-                <div class="row row-cols-2 m-0 armapc-productos">
-                    {% if cooler %}
-                    <div value="{{ cooler['id'] }}" paso="{{ paso }}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == cooler['id'] %}armapc-producto-selected{% endif %}">
-                        <img class="p-2" src="{{ cooler['imagen'] }}" alt="{{ cooler['nombre'] }}">
-                        <div class="armapc-producto-body">
-                            <small class="mt-auto" title="{{ cooler['nombre'] }}"><strong>{{ cooler['nombre'] | Tmax(100) }}</strong></small>
-                            <p class="mb-auto">{{ cooler['precio'] | M }}</p>
-                            <div class="mt-auto">
-                            <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
-                            <small style="color: #4caf50;"> Compatible</small>
-                            </div>
+                {% if paso == 11 %}
+                <!-- RESUMEN FINAL -->
+                    <div class="card ms-2 mb-2 p-2 sombra bordeizquierdo-color">
+                        <p class="ms-5 my-2"><strong>Componentes de la PC</strong></p>
+                        <div class="card-body">
+                            {% for p in productos %}
+                                <li><strong>1</strong> X {{ p['nombre'] }}</li>
+                            {% endfor %}
+                            <li><strong>1</strong> X ARMADO BASICO DE PC (No incluye instalación de sistema operativo)</li>
                         </div>
+                        <p class="precio fs-4 mt-auto mb-0 ms-4">Total: {{ total | M }}</p>
                     </div>
-                    {% endif %}
-                    {% if paso < 11 %}
-                        {% for p in productos %}
-                            <div value="{{ p['id'] }}" paso="{{ paso }}" tipo="{{p['subcat']}}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
-                                <img class="p-2" src="{{ p['imagen'] }}1.png" alt="{{ p['nombre'] }}">
+                {% else %}
+                <!-- CONTENEDOR DE CARDS DE PRODUCTOS -->
+                    <div class="row row-cols-2 m-0 armapc-productos">
+                        {% if cooler %}
+                            <div value="{{ cooler['id'] }}" paso="{{ paso }}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == cooler['id'] %}armapc-producto-selected{% endif %}">
+                                <img class="p-2" src="{{ cooler['imagen'] }}" alt="{{ cooler['nombre'] }}">
                                 <div class="armapc-producto-body">
-                                    <small class="mt-auto" title="{{ p['nombre'] }}"><strong>{{ p['nombre'] | Tmax(100) }}</strong></small>
-                                    <p class="mb-auto">{{ p['precio'] | M }}</p>
+                                    <small class="mt-auto" title="{{ cooler['nombre'] }}"><strong>{{ cooler['nombre'] | Tmax(100) }}</strong></small>
+                                    <p class="mb-auto">{{ cooler['precio'] | M }}</p>
                                     <div class="mt-auto">
                                     <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
                                     <small style="color: #4caf50;"> Compatible</small>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
+                        {% endif %}
+                        {% if paso < 11 %}
+                        <!-- CARDS DE PRODUCTOS -->
+                            {% for p in productos %}
+                                <div value="{{ p['id'] }}" paso="{{ paso }}" tipo="{{p['subcat']}}" class="mb-2 col sombra armapc-producto {% if productoPaso[paso-1] == p['id'] %}armapc-producto-selected{% endif %}">
+                                    <img class="p-2" src="{{ p['imagen'] }}1.png" alt="{{ p['nombre'] }}">
+                                    <div class="armapc-producto-body">
+                                        <small class="mt-auto" title="{{ p['nombre'] }}"><strong>{{ p['nombre'] | Tmax(100) }}</strong></small>
+                                        <p class="mb-auto">{{ p['precio'] | M }}</p>
+                                        <div class="mt-auto">
+                                        <img style="max-width: 15px;" src="/static/image/compatible.jpg" alt="compatible" loading="lazy">
+                                        <small style="color: #4caf50;"> Compatible</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
